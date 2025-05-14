@@ -6,33 +6,74 @@
     <title>全プラットフォームの目標</title>
     <style>
         body {
-            background-color: #f0fff0;
-            color: #38761d;
+            background: linear-gradient(135deg, #f0fff0 0%, #e6ffe6 100%);
+            color: #2c5530;
             font-family: "メイリオ", Meiryo, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         h2 {
-            color: #6b8e23;
-            margin-top: 30px;
-            margin-bottom: 20px;
+            color: #4a752c;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #6b8e23;
+            font-size: 2em;
         }
         h3 {
-            color: #778899;
-            margin-top: 25px;
-            margin-bottom: 15px;
+            color: #5f7a3d;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            position: relative;
+            padding-left: 15px;
+        }
+        h3::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6b8e23;
         }
         p {
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         ul {
             margin-left: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #6b8e23;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>

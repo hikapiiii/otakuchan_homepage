@@ -3,201 +3,1027 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ひかぴのSNS運用成果発表</title>
+    <title>MBTIの新しい扉 - ひかぴのSNS運用成果発表</title>
     <style>
-        body {
-            background-color: #f0fff0;
-            color: #38761d;
-            font-family: "メイリオ", Meiryo, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
+        .mbti-scroll-container {
+            width: 100vw;
+            overflow: hidden;
+            background: #f5f5f5;
+            padding: 10px 0;
+            position: relative;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            left: 0;
+            right: 0;
         }
 
-        h1 {
-            color: #228b22;
+        .mbti-scroll-container.bottom {
+            margin-top: 40px;
+        }
+
+        .mbti-scroll {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+            width: max-content;
+            padding: 0 50vw;
+            position: relative;
+            left: -25%;
+        }
+
+        .mbti-scroll.reverse {
+            animation: scrollReverse 30s linear infinite;
+            left: -25%;
+        }
+
+        .mbti-box {
+            background: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px 30px;
+            margin: 0 15px;
+            font-weight: bold;
+            min-width: 140px;
             text-align: center;
-            text-decoration: underline;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 1.2em;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scrollReverse {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #262626;
+            --background-color: #ffffff;
+            --border-color: #dbdbdb;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: var(--background-color);
+            color: var(--primary-color);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(0,0,0,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .hero p {
+            font-size: 1.2em;
             margin-bottom: 30px;
         }
 
-        h2 {
-            color: #6b8e23;
-            margin-top: 30px;
-            margin-bottom: 20px;
+        .content-section {
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-out;
         }
 
-        h3 {
-            color: #778899;
-            margin-top: 25px;
-            margin-bottom: 15px;
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        ul {
-            margin-left: 0;
-            margin-bottom: 20px;
-            display: inline-block;
-            text-align: left;
-        }
-
-        li {
-            margin-bottom: 10px;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+            border-radius: 2px;
         }
 
         .profile-section {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin: 40px auto;
+            max-width: 1000px;
+            padding: 0 20px;
         }
+
         .profile-image {
-            margin: 0 auto;
-            width: 200px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .content-card {
+            background: #fff;
+            border: 1.5px solid #ccc;
+            border-radius: 18px;
+            padding: 36px 32px 60px 32px;
+            text-align: left;
+            font-size: 1.15em;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .content-card.with-image {
+            padding: 0 0 60px 0;
+        }
+
+        .content-card.with-image .card-image {
+            width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 18px 18px 0 0;
         }
-        .profile-text {
-            text-align: center;
-            font-size: 1.1em;
-            color: #38761d;
+
+        .content-card.with-image .content-title,
+        .content-card.with-image .content-desc {
+            padding: 0 32px;
         }
-        .speech-bubble {
+
+        .content-card.with-image .content-title {
+            margin-top: 24px;
+        }
+
+        .content-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .content-desc {
+            font-size: 1em;
+            margin-bottom: 32px;
+            color: #444;
+        }
+
+        .content-btn {
+            position: absolute;
+            bottom: 24px;
+            right: 32px;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 28px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .content-btn:hover {
+            background: #444;
+            transform: scale(1.05);
+        }
+        @media (max-width: 700px) {
+            .content-card {
+                padding: 24px 12px 60px 12px;
+                min-height: 140px;
+            }
+            .content-card.with-image .content-title,
+            .content-card.with-image .content-desc {
+                padding: 0 12px;
+            }
+            .content-card.with-image .content-title {
+                margin-top: 16px;
+            }
+            .content-btn {
+                right: 12px;
+                bottom: 16px;
+                padding: 8px 16px;
+            }
+        }
+        .main-lead-block {
             position: relative;
-            background: #fff;
-            border: 2px solid #b6d7a8;
-            border-radius: 16px;
-            padding: 18px 22px;
-            color: #38761d;
-            font-size: 1.1em;
-            max-width: 260px;
-            text-align: left;
-            box-shadow: 0 2px 8px rgba(56, 118, 29, 0.08);
+            z-index: 1;
+            background: var(--background-color);
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 40px;
-            width: 0;
-            height: 0;
-            border-top: 16px solid transparent;
-            border-bottom: 16px solid transparent;
-            border-right: 24px solid #fff;
+        .main-lead-title {
+            font-size: 2.6em;
+            font-weight: bold;
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
         }
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 38px;
-            width: 0;
-            height: 0;
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
-            border-right: 28px solid #b6d7a8;
-            z-index: -1;
-        }
-        .section-block {
-            background: #ffffffcc;
-            border: 1.5px solid #b6d7a8;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(56, 118, 29, 0.08);
-            padding: 28px 18px 18px 18px;
-            margin: 36px auto;
+        .main-lead-text {
+            font-size: 1.15em;
+            line-height: 2;
+            font-weight: 500;
+            margin: 0 auto;
             max-width: 700px;
         }
-        .button {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin: 10px 0;
-            transition: background-color 0.3s;
+
+        /* アニメーション用のスタイル */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
         }
-        .button:hover {
-            background-color: #45a049;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-block {
+            margin: 60px auto 40px auto;
+            max-width: 700px;
+        }
+        .profile-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 32px;
+            letter-spacing: 0.1em;
+        }
+        .profile-content-block {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .profile-image-left {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #000;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        .profile-image-left:hover {
+            transform: rotate(5deg);
+        }
+        .profile-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #222;
+        }
+        @media (max-width: 700px) {
+            .profile-content-block {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .profile-title {
+                font-size: 1.5em;
+            }
+            .profile-image-left {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .vision-section {
+            background: #f8f8f8;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid white;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .footer-link:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .contents-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 100%;
+            margin: 0 auto 60px auto;
+            padding: 0 32px;
+        }
+
+        .image-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: #fff;
+            border: 1.5px solid #ccc;
+            border-radius: 18px;
+            padding: 36px 32px 60px 32px;
+            text-align: left;
+            font-size: 1.15em;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .content-card.with-image {
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            min-height: 400px;
+        }
+
+        .content-card.with-image .card-image {
+            width: 55%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px 0 0 18px;
+        }
+
+        .slideshow-container {
+            width: 55%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px 0 0 18px;
+        }
+
+        .slideshow {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes slideshow {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-1400%);  /* 14枚分のスライド */
+            }
+        }
+
+        .slide-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: background 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slide-button:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-button.prev {
+            left: 20px;
+        }
+
+        .slide-button.next {
+            right: 20px;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .slide-nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .slide-nav-dot.active {
+            background: white;
+        }
+
+        .content-card.with-image .content-wrapper {
+            width: 45%;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-card.with-image .content-title {
+            font-size: 2em;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .content-card.with-image .content-desc {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .content-card.with-image .content-btn {
+            position: static;
+            align-self: flex-start;
+            padding: 12px 36px;
+            font-size: 1.1em;
+        }
+
+        .text-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .content-card.with-image {
+                min-height: 350px;
+            }
+            .content-card.with-image .content-wrapper {
+                padding: 36px;
+            }
+            .content-card.with-image .content-title {
+                font-size: 1.8em;
+            }
+            .content-card.with-image .content-desc {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .text-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .content-card.with-image {
+                flex-direction: column;
+                min-height: auto;
+            }
+            .content-card.with-image .card-image {
+                width: 100%;
+                height: 300px;
+                border-radius: 18px 18px 0 0;
+            }
+            .content-card.with-image .content-wrapper {
+                width: 100%;
+                padding: 32px;
+            }
+            .content-card.with-image .content-title {
+                font-size: 1.6em;
+                margin-bottom: 16px;
+            }
+            .content-card.with-image .content-desc {
+                font-size: 1em;
+                margin-bottom: 32px;
+            }
+            .slideshow-container {
+                width: 100%;
+                height: 300px;
+                border-radius: 18px 18px 0 0;
+            }
+            .slide-button {
+                width: 36px;
+                height: 36px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .contents-vertical {
+                padding: 0 16px;
+            }
+            .text-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .content-card.with-image .card-image {
+                height: 200px;
+            }
+            .content-card.with-image .content-wrapper {
+                padding: 24px;
+            }
+            .content-card.with-image .content-title {
+                font-size: 1.4em;
+            }
+            .content-card.with-image .content-btn {
+                padding: 10px 24px;
+                font-size: 1em;
+            }
+            .slideshow-container {
+                height: 200px;
+            }
+            .slide-button {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
+            .slide-button.prev {
+                left: 10px;
+            }
+            .slide-button.next {
+                right: 10px;
+            }
         }
     </style>
-     <link rel="stylesheet" href="style.css">
+    <script>
+        // スクロールアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // アニメーション対象の要素を監視
+            document.querySelectorAll('.content-card, .profile-block, .main-lead-block').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // ボタンのホバーエフェクト
+            document.querySelectorAll('.content-btn').forEach(button => {
+                button.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                button.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // プロフィール画像のホバーエフェクト
+            const profileImage = document.querySelector('.profile-image-left');
+            if (profileImage) {
+                profileImage.addEventListener('mouseover', function() {
+                    this.style.transform = 'rotate(5deg)';
+                });
+                profileImage.addEventListener('mouseout', function() {
+                    this.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSlideshow('shoujo-slideshow');
+            initializeSlideshow('isekai-slideshow');
+        });
+
+        function initializeSlideshow(slideshowId) {
+            const slideshow = document.getElementById(slideshowId);
+            const slides = slideshow.getElementsByClassName('slide');
+            
+            // すべてのスライドを非表示に
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            
+            // 最初のスライドだけを表示
+            slides[0].style.display = 'block';
+
+            // マウスホバーでスライド切り替え
+            slideshow.addEventListener('mouseenter', function() {
+                const currentSlide = slideshow.querySelector('.slide[style*="display: block"]');
+                let currentIndex = Array.from(slides).indexOf(currentSlide);
+                
+                // 次のスライドのインデックスを計算（最後のスライドは除外）
+                const nextIndex = (currentIndex + 1) % (slides.length - 1);
+                
+                // 現在のスライドを非表示に
+                currentSlide.style.display = 'none';
+                
+                // 次のスライドを表示
+                slides[nextIndex].style.display = 'block';
+            });
+        }
+    </script>
 </head>
 <body>
-    <h1>SNS運用成果発表 - ひかぴ</h1>
-    <p>「あんちぽAI塾」におけるSNS運用チームの成果を発表します。発表者はひかぴです。</p>
+    <div class="main-lead-block">
+      <div class="mbti-scroll-container">
+        <div class="mbti-scroll">
+            <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-box">#INFJ</div>
+            <div class="mbti-box">#INTJ</div>
+            <div class="mbti-box">#ISTP</div>
+            <div class="mbti-box">#ISFP</div>
+            <div class="mbti-box">#INFP</div>
+            <div class="mbti-box">#INTP</div>
+            <div class="mbti-box">#ESTP</div>
+            <div class="mbti-box">#ESFP</div>
+            <div class="mbti-box">#ENFP</div>
+            <div class="mbti-box">#ENTP</div>
+            <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-box">#ENTJ</div>
+            <!-- 同じボックスを繰り返して連続的なスクロールを実現 -->
+            <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-box">#INFJ</div>
+            <div class="mbti-box">#INTJ</div>
+            <div class="mbti-box">#ISTP</div>
+            <div class="mbti-box">#ISFP</div>
+            <div class="mbti-box">#INFP</div>
+            <div class="mbti-box">#INTP</div>
+            <div class="mbti-box">#ESTP</div>
+            <div class="mbti-box">#ESFP</div>
+            <div class="mbti-box">#ENFP</div>
+            <div class="mbti-box">#ENTP</div>
+            <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-box">#ENTJ</div>
+        </div>
+      </div>
 
-    <div class="section-block">
-      <h2>ユーザー紹介：オタクちゃん</h2>
-      <div class="profile-section">
-        <img src="images/otakuchan.png" alt="オタクちゃんのプロフィール画像" class="profile-image">
-        <div class="profile-text">
-          mbtiオタクの女の子。自身はinfpで控えめだがたまに毒を吐く。
+      <h1 class="main-lead-title">MBTIって、なんだかもうマンネリ？</h1>
+
+      <p class="main-lead-text">
+        それなら、当サイトでMBTIの新しい扉を開けてみませんか？私たちは、MBTIを 딱딱とした『分析』ツールとして捉えるのはもう終わり。もっと自由な発想で、ワクワクしながら自分や周りの人を『観察』する、そんな新しい楽しみ方を提案します。『16タイプだからあなたは〇〇』なんて決めつけは一切なし！それぞれの個性は、違うからこそ面白い。そんな発見に満ちた体験をお届けします。
+      </p>
+
+      <div class="mbti-scroll-container bottom">
+        <div class="mbti-scroll reverse">
+            <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-box">#INFJ</div>
+            <div class="mbti-box">#INTJ</div>
+            <div class="mbti-box">#ISTP</div>
+            <div class="mbti-box">#ISFP</div>
+            <div class="mbti-box">#INFP</div>
+            <div class="mbti-box">#INTP</div>
+            <div class="mbti-box">#ESTP</div>
+            <div class="mbti-box">#ESFP</div>
+            <div class="mbti-box">#ENFP</div>
+            <div class="mbti-box">#ENTP</div>
+            <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-box">#ENTJ</div>
+            <!-- 同じボックスを繰り返して連続的なスクロールを実現 -->
+            <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-box">#INFJ</div>
+            <div class="mbti-box">#INTJ</div>
+            <div class="mbti-box">#ISTP</div>
+            <div class="mbti-box">#ISFP</div>
+            <div class="mbti-box">#INFP</div>
+            <div class="mbti-box">#INTP</div>
+            <div class="mbti-box">#ESTP</div>
+            <div class="mbti-box">#ESFP</div>
+            <div class="mbti-box">#ENFP</div>
+            <div class="mbti-box">#ENTP</div>
+            <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-box">#ENTJ</div>
         </div>
       </div>
     </div>
 
-    <div class="section-block">
-      <h2>運用SNSプラットフォーム</h2>
-      <ul>
-          <li>X (旧Twitter)</li>
-          <li>Instagram</li>
-      </ul>
+    <div class="profile-block">
+      <h2 class="profile-title">profile</h2>
+      <div class="profile-content-block">
+        <img src="images/profile_green.png" alt="プロフィール画像" class="profile-image-left">
+        <div class="profile-text">
+          mbtiオタクの女の子。自身はinfpで控えめだが人と話すのは好き。Threadsに生息している。
+        </div>
+      </div>
     </div>
 
-    <div class="section-block">
-      <h2>各プラットフォームの目標</h2>
-      <h3>X の目標</h3>
-      <p>5/15までにフォロワー300人</p>
-      <h3>Threads の目標</h3>
-      <p>5/15までにフォロワー300人</p>
+    <div class="contents-block">
+      <h2 class="contents-title">contents</h2>
+      <div class="contents-vertical">
+        <div class="image-cards">
+          <div class="content-card with-image">
+            <div class="slideshow-container">
+              <div class="slideshow" id="shoujo-slideshow">
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_shojo_mangastyle_illustration_of_a_dreamy_1.jpg" alt="INFP - 夢見るヒロイン">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_responsible_commanding_high_school_girl_in_0 (1).jpg" alt="ESTJ - しっかり者の生徒会長">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_cheerful_friendly_high_school_girl_inspire_2.jpg" alt="ESFJ - 明るい優等生">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_serious_dependable_high_school_girl_inspir_2.jpg" alt="ISTJ - 真面目な委員長">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_caring_humble_high_school_girl_inspired_by_1.jpg" alt="ISFJ - 優しい保健委員">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_shojo_mangastyle_illustration_of_a_bold_at_0.jpg" alt="ESTP - 活発な運動部キャプテン">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_sparkling_expressive_high_school_girl_insp_0.jpg" alt="ENFP - キラキラ系ムードメーカー">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_cool_silent_high_school_girl_inspired_by_I_3.jpg" alt="ISTP - クールな天才肌">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_confident_elegant_high_school_girl_inspire_3.jpg" alt="ENTJ - カリスマ系リーダー">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_playful_quickwitted_high_school_girl_inspi_0.jpg" alt="ENTP - 発想豊かなトリックスター">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_darkhaired_composed_high_school_girl_inspi_2.jpg" alt="INTJ - 知的な策士">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_quiet_analytical_high_school_girl_inspired_1.jpg" alt="INTP - 物静かな研究者">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_confident_and_kind_high_school_girl_inspir_2.jpg" alt="ENFJ - 面倒見の良い姉御肌">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_calm_wiselooking_high_school_girl_inspired_3.jpg" alt="INFJ - 神秘的な癒し系">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_lively_cheerful_high_school_girl_inspired_0.jpg" alt="ESFP - 天真爛漫なアイドル">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_shojo_mangastyle_illustration_of_a_dreamy_3.jpg" alt="ISFP - 繊細な芸術家">
+                </div>
+                <!-- ループ用に最初の画像を繰り返し -->
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="syojyomanga/Leonardo_Anime_XL_A_shojo_mangastyle_illustration_of_a_dreamy_1.jpg" alt="INFP - 夢見るヒロイン">
+                </div>
+              </div>
+            </div>
+            <div class="content-wrapper">
+              <div class="content-title">少女漫画ヒロイン図鑑</div>
+              <div class="content-desc">人気少女漫画のヒロインをMBTIタイプで分析。</div>
+              <button class="content-btn">投稿をチェック</button>
+            </div>
+          </div>
+          <div class="content-card with-image">
+            <div class="slideshow-container">
+              <div class="slideshow" id="isekai-slideshow">
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_commanding_fantasy_warlord_on_a_fortress_b_3.jpg" alt="ENTJ - 帝国を統べる軍師">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_disciplined_royal_guard_standing_stoically_2.jpg" alt="ISTJ - 忠実な近衛騎士">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_kind_healer_tending_to_children_in_a_quiet_1.jpg" alt="ISFJ - 癒しの神官">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_mystical_female_oracle_standing_in_a_candl_0.jpg" alt="INFJ - 神秘の預言者">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_highly_intelligent_fantasy_strategist_stan_3.jpg" alt="INTJ - 孤高の参謀">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_silent_rogue_hiding_in_shadows_short_black_0.jpg" alt="ISTP - 影の暗殺者">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_gentle_forest_ranger_standing_in_a_glade_s_1.jpg" alt="ISFP - 森の番人">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_quirky_young_alchemist_in_a_cluttered_wood_3.jpg" alt="INTP - 変わり者の錬金術師">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_commanding_general_giving_orders_on_a_batt_3.jpg" alt="ESTJ - 厳格な将軍">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_fashionable_noble_assistant_in_a_royal_cou_0.jpg" alt="ESFJ - 宮廷の執事">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_heroic_knight_standing_confidently_in_fron_1.jpg" alt="ENFJ - 英雄騎士">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_An_excited_and_energetic_adventurer_leaping_0.jpg" alt="ESFP - 陽気な冒険者">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_flamboyant_trickster_in_colorful_mismatche_2.jpg" alt="ENTP - 道化の策士">
+                </div>
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_softlooking_bard_sitting_on_a_mossy_rock_i_3.jpg" alt="ENFP - 放浪の吟遊詩人">
+                </div>
+                <!-- ループ用に最初の画像を繰り返し -->
+                <div class="slide" onclick="window.location.href='#'">
+                  <img src="tensei_mbti/Leonardo_Anime_XL_A_commanding_fantasy_warlord_on_a_fortress_b_3.jpg" alt="ENTJ - 帝国を統べる軍師">
+                </div>
+              </div>
+            </div>
+            <div class="content-wrapper">
+              <div class="content-title">異世界転生図鑑</div>
+              <div class="content-desc">MBTIタイプ別の異世界での生き方を考察。</div>
+              <button class="content-btn">投稿をチェック</button>
+            </div>
+          </div>
+        </div>
+        <div class="text-cards-grid">
+          <div class="content-card">
+            <div class="content-title">MBTIの擬人化・例え</div>
+            <div class="content-desc">16タイプを擬人化して、より親しみやすく解説します。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+          <div class="content-card">
+            <div class="content-title">MBTI別の好み・行動</div>
+            <div class="content-desc">タイプ別の特徴的な好みや行動パターンを紹介します。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+          <div class="content-card">
+            <div class="content-title">「〇〇な時」シリーズ</div>
+            <div class="content-desc">様々なシチュエーションでのMBTIタイプ別の反応を解説。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+          <div class="content-card">
+            <div class="content-title">ランキング</div>
+            <div class="content-desc">MBTIタイプ別の様々なランキングを紹介します。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+          <div class="content-card">
+            <div class="content-title">主のひとりごと</div>
+            <div class="content-desc">MBTIオタクの日常的な気づきや考察を綴ります。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+          <div class="content-card">
+            <div class="content-title">相性ペア集</div>
+            <div class="content-desc">MBTIタイプ同士の相性を徹底解説します。</div>
+            <button class="content-btn">投稿をチェック</button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="section-block">
-      <h2>具体的な取り組み内容</h2>
-      <h3>X (旧Twitter) での取り組み</h3>
-      <p>ここにXで実施した具体的な取り組み内容を記述してください。</p>
-      <h3>Instagram での取り組み</h3>
-      <p>ここにInstagramで実施した具体的な取り組み内容を記述してください。</p>
+    <div class="vision-section">
+        <div class="vision-content">
+            <h2 class="section-title">私たちの目指すもの</h2>
+            <p class="vision-text">
+                多様性をポジティブに楽しめるカルチャー。<br>
+                『ちがうからおもしろい』が当たり前になる、<br>
+                そんな社会をデザインします。
+            </p>
+        </div>
     </div>
 
-    <div class="section-block">
-      <h2>成果</h2>
-      <h3>X (旧Twitter) の成果</h3>
-      <ul>
-          <li>フォロワー数: [具体的な数値]</li>
-          <li>エンゲージメント数: [具体的な数値]</li>
-      </ul>
-      <h3>ThreadsThreads の成果</h3>
-      <ul>
-          <li>フォロワー数: [具体的な数値]</li>
-          <li>エンゲージメント数: [具体的な数値]</li>
-      </ul>
-    </div>
-
-    <div class="section-block">
-      <h2>成功要因と課題</h2>
-      <p>ここに各プラットフォームの成功要因と課題をまとめて記述してください。</p>
-    </div>
-
-    <div class="section-block">
-      <h2>得られた学び</h2>
-      <p>この研修を通して得られた学びを記述してください。</p>
-    </div>
-
-    <div class="section-block">
-      <h2>今後の展望</h2>
-      <p>今後のSNS運用に関する展望を記述してください。</p>
-      <a href="goals.html" class="button">全プラットフォームの目標</a>
+    <div class="footer">
+        <div class="container">
+            <a href="goals.html" class="footer-link">研究の成果はこちら：発表資料</a>
+        </div>
     </div>
 </body>
 </html>
+
