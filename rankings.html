@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTIタイプ別ランキング集 - MBTIの新しい扉</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #262626;
+            --background-color: #ffffff;
+            --border-color: #dbdbdb;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --rank-gold: #FFD700;
+            --rank-silver: #C0C0C0;
+            --rank-bronze: #CD7F32;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #f5f5f5;
+            border: 1px solid var(--border-color);
+        }
+
+        .back-button:hover {
+            background-color: #ebebeb;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 1.2em;
+            margin-right: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-top: 40px;
+        }
+
+        .accordion-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background-color: #f8f8f8;
+        }
+
+        .accordion-button::after {
+            content: "＋";
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-button[aria-expanded="true"]::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            background-color: #fff;
+        }
+
+        .accordion-content-inner {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ranking-item {
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            position: relative;
+        }
+
+        .ranking-item.rank-1 {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--rank-gold);
+        }
+
+        .ranking-item.rank-2 {
+            background-color: rgba(192, 192, 192, 0.1);
+            border-left: 4px solid var(--rank-silver);
+        }
+
+        .ranking-item.rank-3 {
+            background-color: rgba(205, 127, 50, 0.1);
+            border-left: 4px solid var(--rank-bronze);
+        }
+
+        .ranking-item strong {
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .ranking-number {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: white;
+        }
+
+        .rank-1 .ranking-number {
+            background-color: var(--rank-gold);
+        }
+
+        .rank-2 .ranking-number {
+            background-color: var(--rank-silver);
+        }
+
+        .rank-3 .ranking-number {
+            background-color: var(--rank-bronze);
+        }
+
+        .note {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .extra-entry {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #f0f0f0;
+            border-radius: 6px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero-title {
+                font-size: 1.8em;
+            }
+
+            .accordion-button {
+                padding: 16px;
+            }
+
+            .ranking-item {
+                margin: 10px 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/index.html" class="back-button">
+            トップページに戻る
+        </a>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">MBTIタイプ別ランキング集</h1>
+            <p class="hero-description">
+                様々な視点から見たMBTIタイプのランキングを紹介します。
+            </p>
+        </section>
+
+        <div class="content-section">
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-1">
+                    なんだかんだモテるMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-1">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ESFP</strong>：明るくて一緒にいるだけで楽しい
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFP</strong>：距離の詰め方が天才的
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INFJ</strong>：静かな色気と知的さのギャップ
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISFP</strong>：ミステリアスで目で殺しにくる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENTP</strong>：会話が盛り上がるのはだいたいこの人
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>INTP</strong>：説明してるだけなのに「頭良すぎてヤバい」って言われがち<br>
+                            <strong>ESTP</strong>：チャラそうなのに意外と優しくて沼る<br>
+                            <strong>ISTP</strong>：クールで無口なのに、なぜかモブ受けがいい<br>
+                            <strong>ESFJ</strong>：気づけば惚れられてる、全方向への気配り力
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-2">
+                    メンヘラを引き寄せがちなMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-2">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INFJ</strong>：理解力えぐすぎて、逆に依存される
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFP</strong>：距離感ゼロで近づくから勘違いされがち
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ISFP</strong>：優しくて怒らない＝受け止めてくれると思われる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ESFJ</strong>：まじで親切。だから逆に「この人しかいない」ってなる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INTP</strong>：感情を読み取られにくくて「もっと知りたい」が加速する
+                        </div>
+                        <div class="note">
+                            ✔ 「優しい」「安心する」って言われるやつ、だいたい巻き込まれがち<br>
+                            ✔ 無自覚モテの代償、ちょっと重めです
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-3">
+                    告白されがち選手権
+                </button>
+                <div class="accordion-content" id="content-3">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ISFP</strong>：静かに美しい、そりゃ気になる
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFP</strong>：好意っぽい空気出すのうますぎ
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INFJ</strong>：なんか気づいたら惚れてた系
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ESFP</strong>：ノリ良すぎて「ワンチャン…？」と思われる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENFJ</strong>：やさしさの暴力。好きになるしかない
+                        </div>
+                        <div class="note">
+                            ✔「これ…脈ある？」って相手が勝手に思ってる<br>
+                            ✔ 本人は無自覚なパターン多数
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-4">
+                    恋愛で"圧"が強くなりがちなMBTI
+                </button>
+                <div class="accordion-content" id="content-4">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ENTJ</strong>：恋愛も人生設計に組み込んでくる
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFJ</strong>：全部見抜かれてて逃げ道がない
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ESFJ</strong>：尽くしすぎて逆にプレッシャー
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INFJ</strong>：言葉にしない圧が重いときある
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INTJ</strong>：感情の動きが読めなすぎて怖い
+                        </div>
+                        <div class="note">
+                            ✔ 愛情の量が重たいとかじゃなくて、存在の"重力"がすごい<br>
+                            ✔ 好きだけど、時々ちょっと…しんどい（でも好き）
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-5">
+                    付き合ったら即安心させてくるMBTI
+                </button>
+                <div class="accordion-content" id="content-5">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ISFJ</strong>：癒しと献身のかたまり
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ESFJ</strong>：察してくれるし、優しさがすごい
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INFP</strong>：深く理解しようとしてくれる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTJ</strong>：ブレない安定感、信頼のかたまり
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENFJ</strong>：精神的にちゃんと支えてくれる
+                        </div>
+                        <div class="note">
+                            ✔ ドラマはないけど、毎日があたたかい<br>
+                            ✔ 安心＝好きが深まるタイプには最強
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-6">
+                    全然怒らなそうって思われがちなMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-6">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ISFJ</strong>：ニコニコしてても内心めちゃ考えてる
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>INFP</strong>：怒ってても声が優しい
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ENFP</strong>：テンション高いから怒ってると気づかれない
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INFJ</strong>：静かに怒ってることに誰も気づかない
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTP</strong>：そもそも感情が読めない
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>INTJ</strong>：怒るときは一言も発さず去る。静かすぎて怖い
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-7">
+                    実はめちゃくちゃネガティブなMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-7">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INFP</strong>：褒められても「いや私なんて」
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>INFJ</strong>：誰も気づかないところで病んでる
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INTP</strong>：理屈で自分を否定していくタイプ
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISFJ</strong>：人のために頑張りすぎてすぐ自己否定
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENFJ</strong>：みんなの感情を受信しすぎて沈む
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ENTP</strong>：ポジティブに見えて、深夜にだけ病む
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-8">
+                    感情よりも理論で判断するMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-8">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INTJ</strong>：感情はノイズ、計画がすべて
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>INTP</strong>：まず仮説、次に検証、それが答え
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ENTJ</strong>：効率が正義、気持ちは後
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTJ</strong>：マニュアル通り動くのが安心
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTP</strong>：感情は説明不能だからスルー
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>INFJ</strong>：感情タイプに見せかけて論理で自己処理しがち
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-9">
+                    人前では平気だけど家で病みがちなMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-9">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INFJ</strong>：「大丈夫」が口ぐせ
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ISFJ</strong>：誰にも言わずに勝手に反省してる
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INFP</strong>：ひとりで泣いてるのが好きなときある
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENFJ</strong>：明るいキャラの裏で崩れがち
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INTP</strong>：寝る直前にネガティブの波がくる
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ESFJ</strong>：明るく見せるのがうますぎて誰も気づかない
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-10">
+                    寝坊した時の対応がプロMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-10">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ESTP</strong>：秒で出発。走りながら目覚める
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENTP</strong>：寝坊すらネタにして笑わせる
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ESFP</strong>：ノリと勢いで遅刻をごまかす
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ESTJ</strong>：まずは即謝罪、次に指示出し
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTP</strong>：何も言わずに静かに間に合ってる
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ENFP</strong>：寝坊したのに「今日の空キレイだったよ」って言う
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-11">
+                    推し活が命なMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-11">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INFP</strong>：推しは"世界の救い"
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFP</strong>：推し語り始めると止まらない
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ISFJ</strong>：推しの誕生日まで全部覚えてる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INFJ</strong>：推しの精神状態まで読み取ってる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ESFJ</strong>：推しを布教するために全力
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ISTJ</strong>：公式ルールも応援も絶対守るタイプ
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-12">
+                    ノリと勢いで生きてるMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-12">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ESFP</strong>：思いついたら即行動、止まらん
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ENFP</strong>：気づいたら企画始めてる
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ESTP</strong>：考える前に動いてる
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENTP</strong>：なんか盛り上げてるけど着地点不明
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISFP</strong>：静かに見えて急に爆発的な行動
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ENFJ</strong>：みんなを巻き込んでノリに乗る
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-13">
+                    感情が顔に出すぎるMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-13">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>ESFP</strong>：全部顔に出る、わかりやすさ100点
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>INFP</strong>：静かに涙ぐんでる
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ENFP</strong>：うれしいも悲しいもジェスチャーで表現
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ESFJ</strong>：気まずい時の笑顔が逆にわかりやすい
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISFP</strong>：黙ってても不機嫌なのが伝わる
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ISTP</strong>：出てないつもりだけど、目が全部語ってる
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-14">
+                    黙ってるだけで「なんか怖い」と思われがちなMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-14">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INTJ</strong>：無言で全部考えてる顔がこわい
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ISTJ</strong>：静かに真面目なだけなのにこわい
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>INFJ</strong>：目が合うと見透かされてる気がする
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INTP</strong>：何も言わずに突然笑うの怖い
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ISTP</strong>：リアクション薄くて感情不明
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>ENTJ</strong>：黙って腕組んでるときの威圧感えぐい
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-15">
+                    課題の提出ギリギリMBTIランキング
+                </button>
+                <div class="accordion-content" id="content-15">
+                    <div class="accordion-content-inner">
+                        <div class="ranking-item rank-1">
+                            <div class="ranking-number">1</div>
+                            <strong>INFP</strong>：取りかかるまでに3日、始めたら集中
+                        </div>
+                        <div class="ranking-item rank-2">
+                            <div class="ranking-number">2</div>
+                            <strong>ISFP</strong>：気分が乗ったらやる、乗らなかったら寝る
+                        </div>
+                        <div class="ranking-item rank-3">
+                            <div class="ranking-number">3</div>
+                            <strong>ENFP</strong>：ネタはあるけど手が動かない
+                        </div>
+                        <div class="ranking-item">
+                            <strong>ENTP</strong>：締切15分前に天才的ひらめき
+                        </div>
+                        <div class="ranking-item">
+                            <strong>INFJ</strong>：考えすぎて手が止まる
+                        </div>
+                        <div class="extra-entry">
+                            <strong>番外編</strong><br>
+                            <strong>INTP</strong>：構成だけ完璧に練ってて本文白紙
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            console.log('Found accordion button:', button); // Debug line
+            button.addEventListener('click', () => {
+                console.log('Button clicked!'); // Debug line
+                const content = button.nextElementSibling;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                
+                console.log('Current state:', { isExpanded, contentHeight: content.scrollHeight }); // Debug line
+                
+                // Close all other accordion items
+                document.querySelectorAll('.accordion-button').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherButton.nextElementSibling.style.maxHeight = '0';
+                    }
+                });
+
+                // Toggle current accordion item
+                button.setAttribute('aria-expanded', !isExpanded);
+                if (!isExpanded) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    console.log('Opening to height:', content.scrollHeight); // Debug line
+                } else {
+                    content.style.maxHeight = '0';
+                    console.log('Closing accordion'); // Debug line
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

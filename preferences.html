@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTIタイプ別「〇〇な好み・行動」シリーズ - MBTIの新しい扉</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #262626;
+            --background-color: #ffffff;
+            --border-color: #dbdbdb;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #f5f5f5;
+            border: 1px solid var(--border-color);
+        }
+
+        .back-button:hover {
+            background-color: #ebebeb;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 1.2em;
+            margin-right: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .accordion {
+            margin-top: 40px;
+        }
+
+        .accordion-item {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .accordion-header {
+            background: #fff;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #f8f8f8;
+        }
+
+        .accordion-header::after {
+            content: "+";
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            background: #fff;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        .mbti-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .mbti-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .mbti-item:last-child {
+            border-bottom: none;
+        }
+
+        .mbti-type {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+            min-width: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero-title {
+                font-size: 1.8em;
+            }
+
+            .accordion-header {
+                padding: 15px;
+                font-size: 1em;
+            }
+
+            .accordion-item.active .accordion-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/index.html" class="back-button">
+            トップページに戻る
+        </a>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">MBTIタイプ別「〇〇な好み・行動」シリーズ</h1>
+            <p class="hero-description">
+                MBTIの16タイプそれぞれの特徴的な好みや行動パターンを、様々な場面や状況で紹介します。
+            </p>
+        </section>
+
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別、好みのカフェランキング</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">INTP</span>
+                            <span>静かなカフェで落ち着く。ドリンクだけで何時間も過ごす</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESFJ</span>
+                            <span>明るくて賑やかなカフェ、みんなで集まって話すのが最高</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFJ</span>
+                            <span>静かな隅っこ、少し暗い感じのカフェで静かに考え事したい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENTP</span>
+                            <span>トレンドのカフェで、斬新なメニューを試してみたい</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">INFP vs ENFP 休日の過ごし方</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>一人で静かな時間。読書とか、考えごとしながらのんびり</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>アウトドア！みんなとワイワイ、カフェ巡りとかしてエネルギー充電！</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>外に出たくない派だけど、たまに外に出たら自然に触れたい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>自由すぎて急に外出たくなって、カフェか公園で大盛り上がり</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 好きな映画のジャンル</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISFP</span>
+                            <span>美しい映像と音楽のある映画。心に響く感じがいい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESTJ</span>
+                            <span>アクション！テンション上がる映画でスカッとしたい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>深いメッセージが込められている映画。考えさせられる内容が好き</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>ファンタジー系！夢の世界に浸るのが最高</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 恋愛におけるペース</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFJ</span>
+                            <span>ゆっくりじっくり関係を築きたい。心のつながりが大事</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESFP</span>
+                            <span>恋愛の初期は超盛り上がる。お互いのエネルギーを全開で！</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INTP</span>
+                            <span>理論的に分析して、徐々に近づくタイプ</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFJ</span>
+                            <span>相手のことを気遣いながら、お互いを深く理解していく</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 最も優先すること</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">INTJ</span>
+                            <span>効率と目標達成。計画通りに行動するのが大事</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISFP</span>
+                            <span>自由と心地よさ。周囲に流されず、自分の感覚を大事に</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>面白さと冒険。新しいことを試して刺激を求める</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESFJ</span>
+                            <span>人間関係の調和。周囲とのつながりを大切にする</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 一番嫌いなこと</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISTJ</span>
+                            <span>計画が乱されること。予想外の変更が死ぬほど嫌</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>束縛されること。自由でいたい派だから、縛られるのは無理</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INTP</span>
+                            <span>無駄な議論や、論理的に成り立たない話が大嫌い</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISFJ</span>
+                            <span>みんなの不安を取り除けないことがストレス</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 理想のデート</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>静かな場所で深い会話。自然と向き合いながら心を通わせたい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>冒険と楽しさ！アクティブに外に出かけて色んな経験をシェアしたい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFJ</span>
+                            <span>穏やかな時間を過ごしつつ、お互いの世界観を大事にしたい</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESTP</span>
+                            <span>直感で決めた場所！計画なしでも楽しめる、自由なデート</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 ストレス発散方法</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISTJ</span>
+                            <span>整理整頓。整理することで心もスッキリ</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENFP</span>
+                            <span>友達とおしゃべりして、外でちょっと冒険！</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>深呼吸してひとりの時間。静かな場所でリセット</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESTP</span>
+                            <span>思いっきり体を動かして、気分転換したい！</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">MBTIタイプ別 好きな音楽</div>
+                <div class="accordion-content">
+                    <ul class="mbti-list">
+                        <li class="mbti-item">
+                            <span class="mbti-type">ISFP</span>
+                            <span>心に響く音楽。しっとりとしたメロディが好き</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ENTP</span>
+                            <span>ヒップホップとか、リズム感重視で動きたくなる音楽</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">INFP</span>
+                            <span>映画のサウンドトラックみたいな感情を動かす音楽が好き</span>
+                        </li>
+                        <li class="mbti-item">
+                            <span class="mbti-type">ESFJ</span>
+                            <span>みんなと一緒に歌える、盛り上がる音楽が大好き</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // 他のアイテムを閉じる
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // クリックされたアイテムの状態を切り替え
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTIの擬人化・例え - MBTIの新しい扉</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #262626;
+            --background-color: #ffffff;
+            --border-color: #dbdbdb;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #f5f5f5;
+            border: 1px solid var(--border-color);
+        }
+
+        .back-button:hover {
+            background-color: #ebebeb;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 1.2em;
+            margin-right: 4px;
+        }
+
+        .container {
+            margin: 80px auto 40px;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.2em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 200px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border: 2px solid #000;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, #f8f8f8, #ffffff);
+            border: 2px solid #000;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            text-align: left;
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .card-content {
+            font-size: 0.9em;
+            color: #333;
+            white-space: pre-line;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .hero-title {
+                font-size: 2em;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .flip-card {
+                height: 250px;
+            }
+        }
+
+        /* スクロールバーのカスタマイズ */
+        .flip-card-back::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .flip-card-back::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .flip-card-back::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .flip-card-back::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/index.html" class="back-button">
+            トップページに戻る
+        </a>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">MBTIの擬人化・例え</h1>
+            <p class="hero-description">
+                MBTIの16タイプを、身近な例えや状況に置き換えて解説します。
+                カードにカーソルを合わせると、詳しい説明が表示されます。
+            </p>
+        </section>
+
+        <div class="card-grid">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIが恋愛テンプレ男子だったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+INFP：距離感が曖昧な優男。突然深い話してきて、こっちが揺さぶられる
+ENTP：やりとり3ターンで"好きピ"って呼んでくる。マジで何？（でも楽しい）
+ISTJ：夜21時までに返信ないと怒ってると思われがち。でもただ寝てる
+INFJ：「大丈夫？」って聞いたら「あなたこそ」って返してくる。しんどい（好き）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIがLINEスタンプだったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ESFP：うさぎが大ジャンプして「ヤッターーー！！」ってやつ
+ISTP：「OK（無表情）」みたいなやつ。しかも毎回それ
+ENFP：たぶん既読つけずにスタンプだけ押してくる。なぜ？
+INTJ：「返信はしてないけど、頭ではした」って気持ちが込められた無言スタンプ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIがYouTuberだったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ESTP：ドローンに自分乗せて検証する系のやつ。命知らず
+INFJ：音楽と日記で構成された誰も真似できないVlog
+INTP：途中から量子力学の話になってチャンネルごと飛ぶ
+ESFJ：毎週企画会議してる。ちゃんと台本ある。えらすぎる</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIがラーメン屋の店主だったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ISTJ：スープに20年、味変は不可
+ENFP：トッピング自由すぎて何の店かわからん（でも人来る）
+INFP：やってるけど看板出してない
+ENTP：替え玉制度を週替わりでルール変えてくる（意味はない）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIがコスメだったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ISFP：色味ふんわり、でも落ちない。恋愛もそうであれ
+ENTJ：マットで濃い。主役級。しかも長持ち（すごい）
+ENFP：限定色だけど、なぜか2回くらい再販される。人気すぎ
+INTP：成分見たら天才すぎて何者かわからなくなるタイプ。買う</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIが"通話の入り方"だったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ISTP：ミュートのまま入ってて、こっちが気づくまで無言
+ENFP：通話ボタン押す前に「ねえねえ聞いて〜！」って叫んでる
+INTJ：「はい」とだけ言って会話に合流してるけど、全部聞いてた
+INFP：3回誘ってやっと来るけど、最初の10分は「大丈夫かな…」って言ってる</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIが"文化祭の役割"だったら？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ENFJ：仕切りながらみんなの情緒も背負って泣いてる
+ESTP：売り子やるって言って出歩いてる
+INTP：装飾係だけど「なんでこれ必要？」って言って途中で消える
+ISFJ：朝からずっと裏で雑務やってるのに誰も気づいてない。泣く</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">MBTIが"学級委員だったとしたら"</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ESTJ：たぶん全校朝礼で「声が小さい」って言ってくるやつ
+ISFJ：決められたから断れなかった委員。でも結果一番ちゃんとしてる
+ENFP：なぜかクラス全員に「いいじゃん！」って言われて立候補したタイプ
+INTP：委員になったけど「そもそも制度の意義とは？」って話始めてる</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">バグった自販機に例えると？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ENFP → お釣りがやたら多い（優しさが漏れてる）
+ENTP → 選んでないのが出てくる（でもまあ当たり）
+ISTJ → 完璧に動くが硬貨1円ズレると拒絶
+INFP →動作音がすごいのに商品は出てこない</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">グループLINEでの役割に例えると？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ENFJ → まとめ役、でも気づくと病んでる
+INTP → 通知は見てるけど読んでない（物理的に）
+ESFP → スタンプ連打＆急に通話かけてくる
+INFJ → 既読にならないけど空気は読んでる</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">妖怪に例えると？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ISFP → ひっそり人の感情を拾う"そっと見守りぬ"
+ENTP → 村を混乱させる"ひとこと多いま"
+INFJ → 心を透かしてくる"読心地蔵"
+ESTP → だいたい木の上から降ってくる"瞬発狸"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">スマホの通知設定に例えると？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+INTJ → 全部切ってる（LINEも）
+ISFJ → 音もバイブも出るけど1件ずつ返信してる
+ENFP → めちゃくちゃ通知来てるのに全部無視
+INFP → 音鳴らないけど通知ランプずっと光ってる（未対応）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-title">飲み会でのメニュー注文に例えると？</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+ESTJ → 「みんな〇〇でいいよね？」って決めるやつ
+ENFP → 唐揚げとポテトと謎のデザート頼む
+INFP →「…あ、じゃあ私あとでちょっと頼みます」って言って結局頼まない
+ISTP → 勝手に一品頼んでて静かに食べてる</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

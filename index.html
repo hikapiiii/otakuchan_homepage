@@ -41,7 +41,7 @@
             border: 2px solid #333;
             border-radius: 8px;
             padding: 12px 30px;
-            margin: 0 15px;
+            margin: 0 5px;
             font-weight: bold;
             min-width: 140px;
             text-align: center;
@@ -64,6 +64,23 @@
             }
             100% {
                 transform: translateX(0);
+            }
+        }
+
+        .mbti-emoji {
+            font-size: 2rem;
+            margin: 0 5px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .mbti-box {
+                width: 250px;
+                padding: 15px 20px;
+            }
+            
+            .mbti-emoji {
+                font-size: 1.5rem;
             }
         }
 
@@ -248,12 +265,15 @@
             font-size: 1em;
             font-weight: bold;
             cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
+
         .content-btn:hover {
             background: #444;
-            transform: scale(1.05);
+            transform: translateY(-2px);
         }
+
         @media (max-width: 700px) {
             .content-card {
                 padding: 24px 12px 60px 12px;
@@ -539,7 +559,7 @@
             display: flex;
             gap: 8px;
             z-index: 2;
-        }
+            }
 
         .slide-nav-dot {
             width: 8px;
@@ -548,7 +568,7 @@
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: background 0.3s ease;
-        }
+            }
 
         .slide-nav-dot.active {
             background: white;
@@ -597,7 +617,7 @@
             }
             .content-card.with-image .content-wrapper {
                 padding: 36px;
-            }
+        }
             .content-card.with-image .content-title {
                 font-size: 1.8em;
             }
@@ -629,7 +649,7 @@
             }
             .content-card.with-image .content-desc {
                 font-size: 1em;
-                margin-bottom: 32px;
+            margin-bottom: 32px;
             }
             .slideshow-container {
                 width: 100%;
@@ -652,7 +672,7 @@
             }
             .content-card.with-image .card-image {
                 height: 200px;
-            }
+        }
             .content-card.with-image .content-wrapper {
                 padding: 24px;
             }
@@ -758,38 +778,70 @@
       <div class="mbti-scroll-container">
         <div class="mbti-scroll">
             <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-emoji">🧠</div>
             <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-emoji">🔍</div>
             <div class="mbti-box">#INFJ</div>
+            <div class="mbti-emoji">👑</div>
             <div class="mbti-box">#INTJ</div>
+            <div class="mbti-emoji">⚡</div>
             <div class="mbti-box">#ISTP</div>
+            <div class="mbti-emoji">🔮</div>
             <div class="mbti-box">#ISFP</div>
+            <div class="mbti-emoji">🦋</div>
             <div class="mbti-box">#INFP</div>
+            <div class="mbti-emoji">🌞</div>
             <div class="mbti-box">#INTP</div>
+            <div class="mbti-emoji">🎉</div>
             <div class="mbti-box">#ESTP</div>
+            <div class="mbti-emoji">🗂</div>
             <div class="mbti-box">#ESFP</div>
+            <div class="mbti-emoji">🕊</div>
             <div class="mbti-box">#ENFP</div>
+            <div class="mbti-emoji">📢</div>
             <div class="mbti-box">#ENTP</div>
+            <div class="mbti-emoji">🎂</div>
             <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-emoji">🛠</div>
             <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-emoji">🎨</div>
             <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-emoji">🚀</div>
             <div class="mbti-box">#ENTJ</div>
+            <div class="mbti-emoji">🌟</div>
             <!-- 同じボックスを繰り返して連続的なスクロールを実現 -->
             <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-emoji">🧠</div>
             <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-emoji">🔍</div>
             <div class="mbti-box">#INFJ</div>
+            <div class="mbti-emoji">👑</div>
             <div class="mbti-box">#INTJ</div>
+            <div class="mbti-emoji">⚡</div>
             <div class="mbti-box">#ISTP</div>
+            <div class="mbti-emoji">🔮</div>
             <div class="mbti-box">#ISFP</div>
+            <div class="mbti-emoji">🦋</div>
             <div class="mbti-box">#INFP</div>
+            <div class="mbti-emoji">🌞</div>
             <div class="mbti-box">#INTP</div>
+            <div class="mbti-emoji">🎉</div>
             <div class="mbti-box">#ESTP</div>
+            <div class="mbti-emoji">🗂</div>
             <div class="mbti-box">#ESFP</div>
+            <div class="mbti-emoji">🕊</div>
             <div class="mbti-box">#ENFP</div>
+            <div class="mbti-emoji">📢</div>
             <div class="mbti-box">#ENTP</div>
+            <div class="mbti-emoji">🎂</div>
             <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-emoji">🛠</div>
             <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-emoji">🎨</div>
             <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-emoji">🚀</div>
             <div class="mbti-box">#ENTJ</div>
+            <div class="mbti-emoji">🌟</div>
         </div>
       </div>
 
@@ -802,48 +854,70 @@
       <div class="mbti-scroll-container bottom">
         <div class="mbti-scroll reverse">
             <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-emoji">🧠</div>
             <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-emoji">🔍</div>
             <div class="mbti-box">#INFJ</div>
+            <div class="mbti-emoji">👑</div>
             <div class="mbti-box">#INTJ</div>
+            <div class="mbti-emoji">⚡</div>
             <div class="mbti-box">#ISTP</div>
+            <div class="mbti-emoji">🔮</div>
             <div class="mbti-box">#ISFP</div>
+            <div class="mbti-emoji">🦋</div>
             <div class="mbti-box">#INFP</div>
+            <div class="mbti-emoji">🌞</div>
             <div class="mbti-box">#INTP</div>
+            <div class="mbti-emoji">🎉</div>
             <div class="mbti-box">#ESTP</div>
+            <div class="mbti-emoji">🗂</div>
             <div class="mbti-box">#ESFP</div>
+            <div class="mbti-emoji">🕊</div>
             <div class="mbti-box">#ENFP</div>
+            <div class="mbti-emoji">📢</div>
             <div class="mbti-box">#ENTP</div>
+            <div class="mbti-emoji">🎂</div>
             <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-emoji">🛠</div>
             <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-emoji">🎨</div>
             <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-emoji">🚀</div>
             <div class="mbti-box">#ENTJ</div>
+            <div class="mbti-emoji">🌟</div>
             <!-- 同じボックスを繰り返して連続的なスクロールを実現 -->
             <div class="mbti-box">#ISTJ</div>
+            <div class="mbti-emoji">🧠</div>
             <div class="mbti-box">#ISFJ</div>
+            <div class="mbti-emoji">🔍</div>
             <div class="mbti-box">#INFJ</div>
+            <div class="mbti-emoji">👑</div>
             <div class="mbti-box">#INTJ</div>
+            <div class="mbti-emoji">⚡</div>
             <div class="mbti-box">#ISTP</div>
+            <div class="mbti-emoji">🔮</div>
             <div class="mbti-box">#ISFP</div>
+            <div class="mbti-emoji">🦋</div>
             <div class="mbti-box">#INFP</div>
+            <div class="mbti-emoji">🌞</div>
             <div class="mbti-box">#INTP</div>
+            <div class="mbti-emoji">🎉</div>
             <div class="mbti-box">#ESTP</div>
+            <div class="mbti-emoji">🗂</div>
             <div class="mbti-box">#ESFP</div>
+            <div class="mbti-emoji">🕊</div>
             <div class="mbti-box">#ENFP</div>
+            <div class="mbti-emoji">📢</div>
             <div class="mbti-box">#ENTP</div>
+            <div class="mbti-emoji">🎂</div>
             <div class="mbti-box">#ESTJ</div>
+            <div class="mbti-emoji">🛠</div>
             <div class="mbti-box">#ESFJ</div>
+            <div class="mbti-emoji">🎨</div>
             <div class="mbti-box">#ENFJ</div>
+            <div class="mbti-emoji">🚀</div>
             <div class="mbti-box">#ENTJ</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="profile-block">
-      <h2 class="profile-title">profile</h2>
-      <div class="profile-content-block">
-        <img src="images/profile_green.png" alt="プロフィール画像" class="profile-image-left">
-        <div class="profile-text">
-          mbtiオタクの女の子。自身はinfpで控えめだが人と話すのは好き。Threadsに生息している。
+            <div class="mbti-emoji">🌟</div>
         </div>
       </div>
     </div>
@@ -912,7 +986,7 @@
             <div class="content-wrapper">
               <div class="content-title">少女漫画ヒロイン図鑑</div>
               <div class="content-desc">人気少女漫画のヒロインをMBTIタイプで分析。</div>
-              <button class="content-btn">投稿をチェック</button>
+              <a href="syojomanga.html" class="content-btn">投稿をチェック</a>
             </div>
           </div>
           <div class="content-card with-image">
@@ -969,43 +1043,48 @@
             <div class="content-wrapper">
               <div class="content-title">異世界転生図鑑</div>
               <div class="content-desc">MBTIタイプ別の異世界での生き方を考察。</div>
-              <button class="content-btn">投稿をチェック</button>
+              <a href="isekai.html" class="content-btn">投稿をチェック</a>
             </div>
           </div>
         </div>
         <div class="text-cards-grid">
-          <div class="content-card">
+        <div class="content-card">
             <div class="content-title">MBTIの擬人化・例え</div>
             <div class="content-desc">16タイプを擬人化して、より親しみやすく解説します。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
-          <div class="content-card">
+            <a href="personification.html" class="content-btn">投稿をチェック</a>
+        </div>
+        <div class="content-card">
             <div class="content-title">MBTI別の好み・行動</div>
-            <div class="content-desc">タイプ別の特徴的な好みや行動パターンを紹介します。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
-          <div class="content-card">
+            <div class="content-desc">
+                タイプ別の特徴的な好みや行動パターンを紹介します。
+            </div>
+            <a href="/preferences.html" class="content-btn">投稿をチェック</a>
+        </div>
+        <div class="content-card">
             <div class="content-title">「〇〇な時」シリーズ</div>
             <div class="content-desc">様々なシチュエーションでのMBTIタイプ別の反応を解説。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
-          <div class="content-card">
-            <div class="content-title">ランキング</div>
-            <div class="content-desc">MBTIタイプ別の様々なランキングを紹介します。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
-          <div class="content-card">
-            <div class="content-title">主のひとりごと</div>
-            <div class="content-desc">MBTIオタクの日常的な気づきや考察を綴ります。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
-          <div class="content-card">
-            <div class="content-title">相性ペア集</div>
-            <div class="content-desc">MBTIタイプ同士の相性を徹底解説します。</div>
-            <button class="content-btn">投稿をチェック</button>
-          </div>
+            <a href="/situations.html" class="content-btn">投稿をチェック</a>
         </div>
-      </div>
+        <div class="content-card">
+            <a href="rankings.html" style="text-decoration: none; color: inherit;">
+                <div class="content-title">ランキング</div>
+                <div class="content-desc">MBTIタイプ別の様々なランキングを紹介します。</div>
+            </a>
+            <button class="content-btn" onclick="window.location.href='rankings.html'">投稿をチェック</button>
+        </div>
+        <div class="content-card">
+            <a href="monologue.html" style="text-decoration: none; color: inherit;">
+                <div class="content-title">主のひとりごと</div>
+                <div class="content-desc">MBTIオタクの日常的な気づきや考察を綴ります。</div>
+            </a>
+            <button class="content-btn" onclick="window.location.href='monologue.html'">投稿をチェック</button>
+        </div>
+        <div class="content-card">
+            <div class="content-title">💘 MBTI相性ペア集</div>
+            <div class="content-desc">相性の良いペアから刺激的なペアまで、MBTIタイプ同士の相性を詳しく解説！</div>
+            <a href="pairs.html" class="content-btn">チェックする</a>
+        </div>
+        </div>
     </div>
 
     <div class="vision-section">
@@ -1016,6 +1095,16 @@
                 『ちがうからおもしろい』が当たり前になる、<br>
                 そんな社会をデザインします。
             </p>
+        </div>
+    </div>
+
+    <div class="profile-block">
+      <h2 class="profile-title">profile</h2>
+      <div class="profile-content-block">
+        <img src="images/profile_green.png" alt="プロフィール画像" class="profile-image-left">
+        <div class="profile-text">
+          mbtiオタクの女の子。自身はinfpで控えめだが人と話すのは好き。Threadsに生息している。
+        </div>
         </div>
     </div>
 

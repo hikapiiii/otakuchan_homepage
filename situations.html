@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTIタイプ別「〇〇な時」シリーズ - MBTIの新しい扉</title>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #262626;
+            --background-color: #ffffff;
+            --border-color: #dbdbdb;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .back-button {
+            text-decoration: none;
+            color: var(--text-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            background-color: #f5f5f5;
+            border: 1px solid var(--border-color);
+        }
+
+        .back-button:hover {
+            background-color: #ebebeb;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 1.2em;
+            margin-right: 4px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-top: 40px;
+        }
+
+        .accordion-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:hover {
+            background-color: #f8f8f8;
+        }
+
+        .accordion-button::after {
+            content: "＋";
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-button[aria-expanded="true"]::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            background-color: #fff;
+        }
+
+        .accordion-content-inner {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mbti-type {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #f8f8f8;
+        }
+
+        .mbti-type strong {
+            color: #333;
+        }
+
+        .note {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero-title {
+                font-size: 1.8em;
+            }
+
+            .accordion-button {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/index.html" class="back-button">
+            トップページに戻る
+        </a>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">MBTIタイプ別「〇〇な時」シリーズ</h1>
+            <p class="hero-description">
+                様々なシチュエーションでのMBTIタイプ別の反応や行動を紹介します。
+            </p>
+        </section>
+
+        <div class="content-section">
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-1">
+                    MBTI 16タイプ【推しへの接し方】
+                </button>
+                <div class="accordion-content" id="content-1">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：黙ってるけど「人生設計に組み込んでる」</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：冷静そうで「供給考察ノート3冊」</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：遠くから見守るけど「運営動かしたい」</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：推しもファンも「全員いじり倒す」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：語らないけど「心では崇拝済み」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：推しが笑えば「今日も生きててよかった」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：応援しすぎて「本人より情熱的」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：飽き性だけど「一度刺さると沼」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：グッズ整頓完璧「箱も絶対捨てない」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：日々供養「推しの健康が最優先」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：仕切りたがる「現場回す係」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：布教の鬼「ファン仲間10人つくる」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：無言で貼る「壁にポスター1枚」</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：突然ガチ絵「タグ付けなし」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：現場全通「声出し完璧」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：うちわ盛り盛り「叫び声でかい」</div>
+                        <div class="note">
+                            ✔ 静かでも激しいのが内向勢<br>
+                            ✔ 外向勢はうるさいけど優しい
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-2">
+                    MBTI 16タイプ【推しが炎上したとき】
+                </button>
+                <div class="accordion-content" id="content-2">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：「事実確認中。感情は後」</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：「因果関係と経緯まとめたPDF作成」</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：「運営動かす。まず問い合わせだ」</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：「どの視点からも論破可能」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：「全体の流れに悲しくなってる」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：「信じたい気持ちしかない」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：「推しよりも今叩いてる人が心配」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：「いや無理、寝込む、でも擁護ツイする」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：「公式の声明を待つのが筋」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：「推しが一番つらいって知ってる」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：「炎上の管理できてない運営に怒」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：「とにかく今は"推し大丈夫"を広める」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：「とりあえず様子見、何も言わん」</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：「つらすぎてアートに昇華」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：「てか炎上って誰得？って思ってる」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：「え、まじで心えぐい。でも全力で推す」</div>
+                        <div class="note">
+                            ✔ 情報精査型、感情爆発型、運営に連絡型で分かれる<br>
+                            ✔ 一番強いのは無言で消化してる内向型かも
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-3">
+                    MBTI 16タイプ【推しと目が合ったときの脳内】
+                </button>
+                <div class="accordion-content" id="content-3">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：「……今のって俺？いや、錯覚。冷静になれ。」（→10分後にめちゃくちゃ思い返してる）</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：「光の屈折、ステージ角度、視野範囲的にこれは…見られてた可能性70％…？」（脳内で数式）</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：「OK、見られた。次の現場では名前覚えられる段階に入る」（※本気）</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：「今のは…絶対俺を見てた！いや違うか？いやいや絶対！いやでも…ってか見てくれてありがとう！！」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：「一瞬だったけど、あのまなざしに私のすべてが見抜かれてた気がする……運命？」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：「たぶん、これは人生で何かが変わるサイン。次の作品のテーマにしよう…」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：「えっ、目合ったよね？てかあの表情、たぶんこっちの感情わかってくれた…好きすぎ」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：「ギャーーーー！！！！（その場で昇天）これって運命？いや運命！好き！！！！（語彙消失）」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：「目が合った可能性はある。でも、それを過大評価しないように理性で管理しよう」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：「……今の、奇跡だと思う。もう一生分の幸せかもしれない……ほんとにありがとう……」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：「見られた。これは事実。次に備えてうちわの位置、もうちょい調整しよう」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：「今の目線、たぶんこっち。あとで一緒に来た友達に検証してもらお（共有したすぎ）」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：「……（無言でニヤッ）」（でも脳内で50回再生してる）</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：「うわ……目合った……（沈黙）……尊すぎて無理……（すぐイラスト描く）」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：「きたーーー！！！こっち見たーーー！！！これ撮れた！？誰か撮った！？なぁ！？」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：「目合った！！！！！！ってか今の顔絶対イケてた！！見てた！？見てたよね！？もう好き！！！！」</div>
+                        <div class="note">
+                            ✔ 各タイプ、脳内ドラマすごい<br>
+                            ✔ 共通して"秒で記憶に保存"はしてる
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-4">
+                    MBTI 16タイプ【寝る前に考えがちなこと】
+                </button>
+                <div class="accordion-content" id="content-4">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：「5年後の自分に必要なスキル、今のうちに何身につけるべきか…」（→結局調べ始めて寝られん）</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：「てか"心"ってなんなん？脳が勝手に意味つけてるだけじゃね？」（→哲学沼に落ちる）</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：「明日のToDo完璧。でも万が一のトラブル時の代替案も組んどくか」（→仕事脳ON）</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：「もし明日突然無人島に放り込まれたら誰とチーム組むべき？」（→無限思考ゲーム開始）</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：「あの時あの人が言った一言、やっぱり私のこと見透かしてたのかな…」（→静かに感情反芻）</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：「小説書くなら、やっぱ主人公は孤独を抱えた優しい子がいいな…」（→妄想が物語に育つ）</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：「あの子今日元気なかったな…なんかしてあげられたかな…」（→人の感情を反芻し続ける）</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：「やりたいことありすぎて寝てる場合じゃないかも…てか今からでも始めたくない？！」（→寝ない）</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：「電気消した。アラーム確認。明日のスケジュールOK。…よし、寝る」（→完璧）</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：「あの人にちゃんとお礼言えたかな…明日改めて連絡してみようかな…」（→気遣いモード）</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：「誰かがやらなきゃ進まんし、明日も頑張るしかないな！」（→決意して寝る）</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：「明日のランチ、誰と食べよう…誘われなかったらどうしよう…いや、こっちから誘えばいいか」（→人間関係シミュ）</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：「…（静かにガジェットの分解動画見てる）…（そして寝落ち）」</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：「なんか今日は月が綺麗だったな……（ポエムが始まる）」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：「寝る前にTikTok見てたらこの時間かよ！まぁ楽しかったからいっか」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：「今日あの人に褒められたの思い出した〜！やっぱ私イケてたわ〜！（テンション上がって寝れん）」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-5">
+                    MBTI 16タイプ【夜中に送ってきそうなLINE】
+                </button>
+                <div class="accordion-content" id="content-5">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：「明日の会議資料、念のため送っとく」</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：「"心"って脳のどのへんにあると思う？」</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：「今のうちに送る。明日忘れそうだから」</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：「聞いてwしょうもなすぎる発想うかんだww」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：「こんな時間にごめん、でもちょっとだけ…」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：「今日の空、泣きそうなくらい綺麗だった」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：「なんか直感だけど、疲れてない？」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：「やばいアイデア浮かんだ！！（けど忘れた）」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：「明日の件、まとめたので確認よろしく」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：「さっきの文、変じゃなかったかな…ごめんね」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：「先にこれ共有しとく。既読だけでOK」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：「さっきのスタンプ、冷たくなかった？💦」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：「この動画マジやばい。見て」（URLだけ）</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：「急に誰かに会いたくなる夜ってあるよね」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：「今からラーメン行くやついない？」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：「今日の自撮り盛れてない？見て！！」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-6">
+                    MBTI 16タイプ【失恋したときの第一声】
+                </button>
+                <div class="accordion-content" id="content-6">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：「…まぁ、想定してた」</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：「どこでロジック崩れた？」</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：「了解。次の予定詰める」</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：「それおかしくない？理由もう1回聞かせて」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：「…あぁ、やっぱり」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：「わかってたけど、痛いな」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：「大丈夫。むしろありがとう」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：「うそ、無理無理無理」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：「そうか。わかった」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：「私、悪いことしたかな…」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：「OK。連絡もなしってことで？」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：「うん……え、ほんとに？」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：「…あっそ。しゃーないな」</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：「……そっか」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：「マジ？じゃ次行こ！（強がり）」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：「ちょっと待って無理！！」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-7">
+                    MBTI 16タイプ【恋愛中に出る裏の顔】
+                </button>
+                <div class="accordion-content" id="content-7">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：冷静だけど「返信来ないと即バグる」</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：余裕ぶって「恋の定義ずっと考えてる」</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：主導するけど「心読まれるのは苦手」</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：ふざけてても「本気の時ほど黙る」</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：優しいけど「一度傷つくと心の扉ガチ閉め」</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：夢見がちで「愛の言葉は台本レベルで準備」</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：尽くすけど「察してくれないとちょい不機嫌」</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：愛情深いけど「飽きたら自分でも戸惑う」</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：誠実だけど「ルール崩されると不安爆増」</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：やさしいけど「少しの冷たさで夜眠れん」</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：頼れるけど「恋愛だと急に不器用」</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：明るいけど「好きな人の機嫌で情緒乱高下」</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：無関心っぽくて「でも独占欲エグい」</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：控えめだけど「気持ちわかってもらえないと涙」</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：軽そうで「好きな人には激重」</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：明るいけど「心配されないと不安」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-button" aria-expanded="false" aria-controls="content-8">
+                    MBTI 16タイプ【朝の支度で絶対やること】
+                </button>
+                <div class="accordion-content" id="content-8">
+                    <div class="accordion-content-inner">
+                        <div class="mbti-type"><strong>INTJ（建築家）</strong>：スケジュール確認しながら準備</div>
+                        <div class="mbti-type"><strong>INTP（論理学者）</strong>：起きて10分は思考だけしてる</div>
+                        <div class="mbti-type"><strong>ENTJ（司令官）</strong>：会議の脳内シミュレーション</div>
+                        <div class="mbti-type"><strong>ENTP（討論者）</strong>：支度中に動画見て笑ってる</div>
+                        <div class="mbti-type"><strong>INFJ（提唱者）</strong>：今日は誰とどう関わるか考える</div>
+                        <div class="mbti-type"><strong>INFP（仲介者）</strong>：鏡見て「大丈夫」って自分に言う</div>
+                        <div class="mbti-type"><strong>ENFJ（主人公）</strong>：誰かに「今日がんばってね」LINE</div>
+                        <div class="mbti-type"><strong>ENFP（運動家）</strong>：服選びで毎朝ファッションショー</div>
+                        <div class="mbti-type"><strong>ISTJ（管理者）</strong>：いつもの順番通りに支度</div>
+                        <div class="mbti-type"><strong>ISFJ（擁護者）</strong>：家族の朝ごはんついでに自分も用意</div>
+                        <div class="mbti-type"><strong>ESTJ（幹部）</strong>：ニュースチェックしながら出発準備</div>
+                        <div class="mbti-type"><strong>ESFJ（領事）</strong>：今日の予定を人とすり合わせる</div>
+                        <div class="mbti-type"><strong>ISTP（巨匠）</strong>：ギリギリまで寝て3分で準備完了</div>
+                        <div class="mbti-type"><strong>ISFP（冒険家）</strong>：お気に入りの音楽を流す</div>
+                        <div class="mbti-type"><strong>ESTP（起業家）</strong>：ノリで支度しつつノリで出発</div>
+                        <div class="mbti-type"><strong>ESFP（エンターテイナー）</strong>：TikTok流しながらメイク！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                
+                // Close all other accordion items
+                document.querySelectorAll('.accordion-button').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherButton.nextElementSibling.style.maxHeight = '0';
+                    }
+                });
+
+                // Toggle current accordion item
+                button.setAttribute('aria-expanded', !isExpanded);
+                if (!isExpanded) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = '0';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
