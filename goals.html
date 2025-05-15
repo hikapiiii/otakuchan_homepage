@@ -1072,6 +1072,101 @@
         text-align: left;
         padding-left: 20px;
       }
+
+      .comparison-section {
+        padding: 40px;
+        background: #fff;
+        margin: 48px auto;
+        max-width: 900px;
+      }
+
+      .comparison-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      .platform-card {
+        background: #f8f9fa;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      }
+
+      .platform-card h3 {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 24px;
+        text-align: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .platform-card.threads {
+        border-top: 4px solid #000;
+      }
+
+      .platform-card.x {
+        border-top: 4px solid #1DA1F2;
+      }
+
+      .platform-card.tiktok {
+        border-top: 4px solid #FF0050;
+      }
+
+      .platform-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .feature-list li {
+        margin-bottom: 16px;
+        padding-left: 28px;
+        position: relative;
+        line-height: 1.6;
+        font-size: 1.1em;
+        color: #444;
+        text-align: left;
+      }
+
+      .feature-list li::before {
+        content: '•';
+        position: absolute;
+        left: 12px;
+        color: #666;
+      }
+
+      @media (max-width: 768px) {
+        .comparison-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .platform-card {
+          padding: 24px;
+        }
+
+        .platform-card h3 {
+          font-size: 1.2em;
+        }
+
+        .feature-list li {
+          font-size: 1em;
+        }
+      }
     </style>
 </head>
 <body>
@@ -1345,6 +1440,56 @@
               <li>テキストの見栄えが重要。行間・文字の量・絵文字に配慮する</li>
               <li>コメントがつくと閲覧数が伸びやすい傾向</li>
               <li>「誰にも見せない裏の顔」であったり「本音」であったり、人々のディープな部分に触れる話題は注目されやすい</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション：X/TikTokと比較して -->
+      <section class="comparison-section">
+        <h2>X/TikTokと比較して</h2>
+        <div class="comparison-grid">
+          <div class="platform-card threads">
+            <h3>
+              <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads" class="platform-icon">
+              Threads
+            </h3>
+            <ul class="feature-list">
+              <li>新規参入でも目立ちやすい</li>
+              <li>コミュニティが温かい</li>
+              <li>Instagramとの連携が強み</li>
+              <li>分析機能が限定的</li>
+            </ul>
+            <div style="margin-top: 24px;">
+              <h4 style="font-size: 1.1em; margin-bottom: 16px; color: #333;">投稿サンプル：少女漫画ヒロイン図鑑</h4>
+              <div style="display: grid; gap: 16px;">
+                <img src="images/IMG_4095.png" alt="少女漫画ヒロイン図鑑 1" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <img src="images/IMG_4096.png" alt="少女漫画ヒロイン図鑑 2" style="width: 100%; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+              </div>
+            </div>
+          </div>
+          <div class="platform-card x">
+            <h3>
+              <img src="https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png" alt="X" class="platform-icon">
+              X (Twitter)
+            </h3>
+            <ul class="feature-list">
+              <li>情報の拡散力が強い</li>
+              <li>ハッシュタグが有効</li>
+              <li>分析機能が充実</li>
+              <li>新規参入のハードルが高い</li>
+            </ul>
+          </div>
+          <div class="platform-card tiktok">
+            <h3>
+              <img src="https://sf16-scmcdn-sg.ibytedtos.com/goofy/tiktok/web/node/_next/static/images/logo-dark-e95da587b6efa1520dcd51261e29893b.svg" alt="TikTok" class="platform-icon">
+              TikTok
+            </h3>
+            <ul class="feature-list">
+              <li>アルゴリズムの透明性が高い</li>
+              <li>動画コンテンツに特化</li>
+              <li>若年層へのリーチが強い</li>
+              <li>テキスト投稿には不向き</li>
             </ul>
           </div>
         </div>
