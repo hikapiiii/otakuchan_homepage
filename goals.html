@@ -6,334 +6,1401 @@
     <title>ひかぴの5日間 - 成果発表</title>
     <style>
       body {
-        font-family: sans-serif;
+        font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #fff;
-        color: #111;
+        background: #f7f7f7;
+        color: #222;
+        font-size: 17px;
+        letter-spacing: 0.01em;
+      }
+
+      /* 全体のリストスタイリングを統一 */
+      ul {
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 12px;
+        padding-left: 8px;
       }
 
       section {
-        padding: 80px 20px;
+        padding: 56px 12px 40px 12px;
         text-align: center;
+        margin: 0 auto 32px auto;
+        max-width: 900px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.04);
       }
 
-      h1, h2 {
-        font-weight: bold;
+      .hero {
+        background: #fff;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+        border-radius: 0 0 36px 36px;
+        padding: 80px 10px 56px 10px;
+        margin-bottom: 36px;
+        position: relative;
+        max-width: 100vw;
       }
 
-      .hero h1 {
-        font-size: 2.5em;
-        margin-bottom: 20px;
-        color: #000; /* Explicitly black for title, matches user's hero style */
-      }
-
-      .hero p {
-        font-size: 1.1em;
-        color: #555;
-        max-width: 600px;
-        margin: 0 auto 30px;
-      }
-
-      .cta-button {
-        display: inline-block;
-        background-color: #000;
-        color: #fff;
-        padding: 14px 28px;
-        border-radius: 999px; /* pill shape */
-        text-decoration: none;
-        transition: background-color 0.3s;
-        font-weight: bold; /* Added for better visibility, matches user's hero style */
-      }
-
-      .cta-button:hover {
-        background-color: #333;
-      }
-      
-      /* Styles for Summary Section */
-      .summary h2 {
-        font-size: 2em;
-        margin-bottom: 10px;
-      }
-
-      .summary p {
-        color: #666;
-        margin-bottom: 40px;
+      .summary-outline, .sns-link-block, .ai-tools-block, .top-views-block, .top-likes-block {
+        background: #fafbfc;
+        border-radius: 14px;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+        padding: 28px 8px 18px 8px;
+        margin: 0 auto 28px auto;
+        max-width: 900px;
       }
 
       .summary-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 20px;
+        gap: 16px;
         max-width: 800px;
         margin: 0 auto;
+      }
+
+      .strategy-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .ai-section {
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 24px;
+        margin: 32px auto;
+      }
+
+      .learning {
+        text-align: left;
+        padding: 40px;
+      }
+
+      @media (max-width: 768px) {
+        section {
+          padding: 60px 16px;
+          margin-bottom: 32px;
+        }
+
+        .hero {
+          padding: 80px 16px 60px;
+        }
+
+        .ai-section {
+          padding: 32px 16px;
+          margin: 24px auto;
+        }
+      }
+
+      section:not(:last-child) {
+        margin-bottom: 48px;
+      }
+
+      /* Section titles */
+      section > h2 {
+        font-size: 2.2em;
+        font-weight: 900;
+        color: #222;
+        margin-bottom: 48px;
+        position: relative;
+        display: inline-block;
+      }
+
+      section > h2::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #222, #666);
+        border-radius: 2px;
+      }
+
+      h1, h2, h3 {
+        font-weight: bold;
+        letter-spacing: 0.01em;
+      }
+
+      .hero h1 {
+        font-size: 2.3em;
+        margin-bottom: 18px;
+        color: #181818;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        text-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      }
+
+      .subtitle-mission {
+        font-size: 1.15em;
+        color: #444;
+        margin-bottom: 24px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .program-title, .outline-title, .ai-tools-title, .top-views-title {
+        font-size: 1.13em;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+        color: #181818;
+        display: inline-block;
+        margin-bottom: 16px;
+        border-left: 5px solid #222;
+        padding-left: 12px;
+        background: none;
+      }
+
+      .program-description, .outline-list, .ai-tools-list, .top-view-caption {
+        font-size: 1em;
+        color: #222;
+        line-height: 1.8;
+        letter-spacing: 0.01em;
       }
 
       .summary-card {
-        background: #f9f9f9;
-        padding: 30px 20px;
-        border-radius: 16px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        background: #f5f5f5;
+        padding: 22px 12px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-
       .summary-card .emoji {
-        font-size: 2rem;
-        margin-bottom: 10px;
+        font-size: 1.7rem;
+        margin-bottom: 8px;
       }
-
       .summary-card .label {
-        font-size: 1em;
-        color: #777;
-        margin-bottom: 5px;
+        font-size: 0.98em;
+        color: #888;
+        margin-bottom: 3px;
       }
-
       .summary-card .value {
-        font-size: 1.5em;
+        font-size: 1.25em;
         font-weight: bold;
+        color: #222;
+        letter-spacing: 0.01em;
       }
 
-      /* Styles for Approach Section (Timeline) */
-      .approach h2 {
-        font-size: 2em;
-        margin-bottom: 40px; /* Added margin for title */
+      .timeline .date {
+        display: block;
+        font-size: 0.8em;
+        color: #888;
+        margin-top: 2px;
       }
-      .approach ul.timeline {
+      .timeline-content {
+        text-align: left;
+        margin-left: 10px;
+      }
+      .timeline-title {
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 4px;
+        font-size: 1.05em;
+      }
+      .timeline-content ul {
+        margin: 0 0 0 1.2em;
+        padding: 0;
+        list-style: disc;
+      }
+      .timeline-content li {
+        margin-bottom: 2px;
+        font-size: 0.98em;
+        color: #444;
+      }
+
+      .top-views-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 800px;
+      }
+      .top-view-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 16px 12px 20px 12px;
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+        position: relative;
+        height: 100%;
+        border: 1px solid rgba(0,0,0,0.04);
+      }
+
+      .ranking-label {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(45deg, #FFD700, #FFA500);
+        color: white;
+        padding: 6px 20px;
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 0.95em;
+        z-index: 1;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+      }
+
+      .ranking-label:nth-child(1) {
+        background: linear-gradient(45deg, #FFD700, #FFA500);
+      }
+
+      .top-view-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+      .top-view-img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        object-fit: cover;
+        aspect-ratio: 1.91 / 1;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      }
+      .top-view-caption {
+        font-size: 0.97em;
+        color: #181818;
+        margin: 8px 0;
+        text-align: center;
+        font-weight: 500;
+        padding: 0 8px;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+      }
+
+      .threads-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f0f0;
+        color: #222;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 0.92em;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        margin-top: auto;
+        border: 1px solid rgba(0,0,0,0.08);
+      }
+
+      .threads-link-btn:hover {
+        background: #222;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+
+      .threads-link-btn img {
+        width: 18px;
+        height: 18px;
+        transition: filter 0.2s ease;
+      }
+
+      .threads-link-btn:hover img {
+        filter: invert(1);
+      }
+
+      .ai-tools-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
         list-style: none;
         padding: 0;
-        max-width: 600px;
         margin: 0 auto;
-        text-align: left;
+        max-width: 700px;
       }
-      .timeline li {
-        margin-bottom: 30px;
-        position: relative;
-        padding-left: 80px;
+      .ai-tools-list li {
+        background: #222;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        padding: 15px 0;
+        font-size: 1.08em;
+        color: #fff;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: 0.01em;
+        transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+        border: 1.5px solid #e5e5e5;
       }
-      .timeline .day {
-        position: absolute;
-        left: 0;
-        top: 0;
-        background: #eee;
-        color: #000;
-        font-weight: bold;
-        padding: 6px 12px;
-        border-radius: 8px;
+      .ai-tools-list li:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+        background: #444;
+        transform: translateY(-1px) scale(1.01);
       }
 
-      /* Styles for Results Section */
+      .sns-link-block {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .sns-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #181818;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.05em;
+        padding: 12px 28px;
+        border-radius: 999px;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+        transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      }
+      .sns-link-btn:hover {
+        background: #444;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        transform: translateY(-1px) scale(1.01);
+      }
+      .sns-icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+      }
+
+      @media (max-width: 900px) {
+        section, .summary-outline, .sns-link-block, .ai-tools-block, .top-views-block, .top-likes-block {
+          max-width: 98vw;
+        }
+        .summary-grid, .top-views-cards {
+          max-width: 98vw;
+        }
+      }
+      @media (max-width: 600px) {
+        .hero h1 {
+          font-size: 1.25em;
+        }
+        .subtitle-mission {
+          font-size: 0.98em;
+        }
+        section, .summary-outline, .sns-link-block, .ai-tools-block, .top-views-block, .top-likes-block {
+          padding: 14px 2vw 10px 2vw;
+          border-radius: 8px;
+        }
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+        .top-view-card {
+          width: 98vw;
+          max-width: 320px;
+        }
+        .ai-tools-list {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .top-views-cards {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .top-view-card {
+          width: 100%;
+        }
+      }
+
+      .strategy-card {
+        display: flex;
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        align-items: flex-start;
+        gap: 32px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+      }
+
+      .strategy-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      }
+
+      .strategy-date {
+        min-width: 120px;
+        text-align: center;
+        background: #f8f9fa;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #e9ecef;
+      }
+
+      .strategy-date .day {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #228be6;
+        margin-bottom: 4px;
+      }
+
+      .strategy-date .date {
+        display: block;
+        font-size: 1.1em;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .strategy-main {
+        flex: 1;
+        text-align: left;
+      }
+
+      .strategy-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #181818;
+      }
+
+      .strategy-details {
+        margin: 0;
+        padding-left: 1.2em;
+        color: #444;
+        font-size: 1em;
+        line-height: 1.7;
+        text-align: left;
+        list-style-position: outside;
+      }
+
+      .strategy-details li {
+        padding-left: 0.5em;
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 700px) {
+        .strategy-card {
+          flex-direction: column;
+          gap: 16px;
+          padding: 20px;
+        }
+
+        .strategy-date {
+          min-width: unset;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          padding: 12px;
+        }
+
+        .strategy-date .day {
+          margin-bottom: 0;
+        }
+      }
+
+      .ranking-subtitle {
+        font-size: 1.15em;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+        color: #181818;
+        display: inline-block;
+        margin: 0 0 32px 0;
+        padding: 12px 24px;
+        background: #fff;
+        border-radius: 999px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border: 1px solid rgba(0,0,0,0.06);
+      }
+
       .results h2 {
         font-size: 2em;
-        margin-bottom: 10px;
-      }
-      .results p:first-of-type { /* For "フォロワー数" paragraph */
-        color: #666;
         margin-bottom: 40px;
+        text-align: center;
+        color: #222;
+        font-weight: bold;
+        letter-spacing: 0.02em;
       }
-      .results .post-analysis {
+
+      .ai-cards {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .right-column {
         display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .ai-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+      }
+
+      .ai-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+
+      .ai-card h4 {
+        font-size: 1.4em;
+        color: #222;
+        font-weight: bold;
+        margin-bottom: 24px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 12px;
+      }
+
+      .ai-card h4::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #228be6, #40c057);
+        border-radius: 2px;
+      }
+
+      .insight-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .insight-button {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 16px 20px;
+        text-align: left;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .insight-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        background: #fff;
+      }
+
+      .insight-category {
+        font-weight: bold;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        white-space: nowrap;
+      }
+
+      .category-sns {
+        background: #228be6;
+      }
+
+      .category-hp {
+        background: #40c057;
+      }
+
+      .insight-text {
+        flex: 1;
+        line-height: 1.6;
+      }
+
+      .thought-item {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        border: 1px solid #e9ecef;
+        line-height: 1.6;
+      }
+
+      .thought-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        background: #fff;
+      }
+
+      @media (max-width: 768px) {
+        .ai-cards {
+          grid-template-columns: 1fr;
+        }
+        
+        .ai-section {
+          padding: 60px 16px;
+          margin: 32px auto;
+        }
+
+        .ai-card {
+          padding: 20px;
+        }
+      }
+
+      .learning-points {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+        list-style-position: outside;
+        padding-left: 1.5em;
+      }
+
+      .learning-points li {
+        margin-bottom: 16px;
+        line-height: 1.8;
+        font-size: 1.1em;
+        color: #333;
+      }
+
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+          transform: scale(1.2);
+        }
+        30% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1);
+          display: none;
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        80% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .opening-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        max-width: 800px;
-        margin: 40px auto;
-        text-align: left;
-      }
-      .post-img {
-        width: 250px;
-        height: auto; /* Added for aspect ratio */
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      .post-text {
-        max-width: 400px;
-      }
-      .post-text h3 {
-          font-size: 1.3em; /* Added for consistency */
-          font-weight: bold;
-          margin-bottom: 10px;
+        z-index: 1000;
+        animation: fadeInOut 3s forwards;
       }
 
-      /* Styles for AI Section */
-      .ai-section h2 {
-        font-size: 2em;
-        margin-bottom: 40px; /* Added margin for title */
-      }
-      .ai-cards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        max-width: 1000px;
-        margin: 0 auto;
-        justify-content: center;
-      }
-      .ai-card {
-        flex: 1 1 250px;
-        background: #f4f4f4;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        text-align: left;
-      }
-      .ai-card h4 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-      }
-      .ai-card ul {
-        padding-left: 1.2em;
-        list-style: disc;
-      }
-      .ai-card li {
-          margin-bottom: 8px; /* Added for spacing between list items */
+      .opening-title {
+        font-size: 3.5em;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 24px;
+        background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.4;
       }
 
-      /* Styles for Learning Section */
-      .learning h2 {
+      .opening-mission {
         font-size: 2em;
-        margin-bottom: 40px; /* Added margin for title */
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+        position: relative;
+        padding: 0 48px;
       }
-      .learning-points {
-        list-style: disc;
+
+      .opening-mission::before,
+      .opening-mission::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 32px;
+        background: #333;
+        top: 50%;
+      }
+
+      .opening-mission::before {
+        left: 0;
+      }
+
+      .opening-mission::after {
+        right: 0;
+      }
+
+      .main-content {
+        animation: fadeIn 3s forwards;
+      }
+
+      @media (max-width: 768px) {
+        .opening-title {
+          font-size: 2.5em;
+          padding: 0 20px;
+        }
+
+        .opening-mission {
+          font-size: 1.5em;
+          padding: 0 40px;
+        }
+      }
+
+      .program-block {
+        margin: 64px auto 0;
+      }
+
+      .program-block h2 {
+        font-size: 1.8em;
+        color: #222;
+        font-weight: bold;
+        margin-bottom: 24px;
+        text-align: left;
+        border-left: 5px solid #222;
+        padding-left: 16px;
+      }
+
+      .program-content {
+        text-align: left;
+        font-size: 1.1em;
+        line-height: 1.8;
+      }
+
+      .program-content .overview,
+      .program-content .tasks {
+        margin-bottom: 24px;
+      }
+
+      .program-content .tasks ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .program-content .tasks li {
+        margin-bottom: 12px;
         padding-left: 1.5em;
-        text-align: left;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .learning-points li {
-          margin-bottom: 10px; /* Added for spacing */
-          line-height: 1.6; /* Added for readability */
+        position: relative;
       }
 
-      /* Styles for Closing Section */
-      .closing h2 {
-        font-size: 2em;
-        margin-bottom: 20px; /* Adjusted margin */
+      .program-content .tasks li::before {
+        content: "•";
+        position: absolute;
+        left: 0.5em;
+        color: #666;
       }
-      .closing p {
-        max-width: 600px;
-        margin: 20px auto;
+
+      .program-content .condition {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #222;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 2px solid #eee;
+      }
+
+      @media (max-width: 768px) {
+        .program-block {
+          padding: 24px;
+          margin: 48px auto 0;
+        }
+
+        .program-block h2 {
+          font-size: 1.5em;
+        }
+
+        .program-content {
+          font-size: 1em;
+        }
+
+        .program-content .condition {
+          font-size: 1.2em;
+        }
+      }
+
+      .program-description-box {
+        background: #fff;
+        max-width: 800px;
+        margin: 48px auto;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        text-align: left;
+      }
+
+      .program-description-box h2 {
+        font-size: 2em;
+        color: #222;
+        margin-bottom: 32px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 16px;
+      }
+
+      .program-description-box h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #222, #666);
+        border-radius: 2px;
+      }
+
+      .program-overview {
+        font-size: 1.2em;
+        line-height: 1.8;
+        margin-bottom: 32px;
+        padding: 24px;
+        background: #f8f9fa;
+        border-radius: 16px;
+        border-left: 4px solid #228be6;
+      }
+
+      .program-tasks {
+        margin-bottom: 32px;
+      }
+
+      .program-tasks h3 {
+        font-size: 1.2em;
+        color: #222;
+        margin-bottom: 16px;
+      }
+
+      .tasks-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .tasks-list li {
+        padding: 16px 24px;
+        margin-bottom: 12px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        font-size: 1.1em;
+        line-height: 1.6;
+        position: relative;
+        padding-left: 40px;
+      }
+
+      .tasks-list li::before {
+        content: '•';
+        position: absolute;
+        left: 20px;
+        color: #228be6;
+        font-size: 1.4em;
+        line-height: 1;
+      }
+
+      .program-condition {
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: center;
+        padding: 24px;
+        background: #222;
+        color: #fff;
+        border-radius: 16px;
+        line-height: 1.6;
+        margin-top: 32px;
+      }
+
+      @media (max-width: 768px) {
+        .program-description-box {
+          margin: 32px 16px;
+          padding: 24px;
+        }
+
+        .program-description-box h2 {
+          font-size: 1.6em;
+        }
+
+        .program-overview {
+          font-size: 1.1em;
+          padding: 16px;
+        }
+
+        .tasks-list li {
+          padding: 12px 16px 12px 32px;
+          font-size: 1em;
+        }
+
+        .program-condition {
+          font-size: 1.1em;
+          padding: 16px;
+        }
+      }
+
+      .threads-experience {
+        padding: 40px;
+        background: #fff;
+        margin: 0 auto;
+        max-width: 900px;
+      }
+
+      .threads-insights {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 40px;
+      }
+
+      .threads-box {
+        background: #f8f9fa;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        position: relative;
+      }
+
+      .threads-box.good {
+        border-top: 4px solid #40c057;
+      }
+
+      .threads-box.bad {
+        border-top: 4px solid #fa5252;
+      }
+
+      .threads-box h3 {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 24px;
+        text-align: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .threads-box.good h3 {
+        color: #2b8a3e;
+      }
+
+      .threads-box.bad h3 {
+        color: #c92a2a;
+      }
+
+      .threads-box ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .threads-box ul li {
+        margin-bottom: 16px;
+        padding-left: 28px;
+        position: relative;
+        line-height: 1.6;
         font-size: 1.1em;
         color: #444;
-        line-height: 1.8; /* Added for readability */
+      }
+
+      .threads-box.good ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #40c057;
+        font-weight: bold;
+      }
+
+      .threads-box.bad ul li::before {
+        content: '!';
+        position: absolute;
+        left: 0;
+        color: #fa5252;
+        font-weight: bold;
+        font-size: 1.2em;
+        line-height: 1;
+      }
+
+      .threads-box.notice {
+        grid-column: 1 / -1;
+        border-top: 4px solid #228be6;
+        margin-top: 16px;
+      }
+
+      .threads-box.notice h3 {
+        color: #1971c2;
+      }
+
+      .threads-box.notice ul li::before {
+        content: '💡';
+        position: absolute;
+        left: 0;
+        font-size: 1.2em;
+        line-height: 1;
+      }
+
+      @media (max-width: 768px) {
+        .threads-insights {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .threads-box.notice {
+          margin-top: 0;
+        }
+      }
+
+      .threads-box.bad ul li,
+      .threads-box.notice ul li {
+        text-align: left;
+        padding-right: 20px;
+      }
+
+      .threads-box.bad h3,
+      .threads-box.notice h3 {
+        text-align: left;
+        padding-left: 20px;
       }
     </style>
 </head>
 <body>
-
-    <!-- セクション1：ヒーロー -->
-    <section class="hero">
-      <h1>あんちぽAI塾生、ひかぴの5日間。</h1>
-      <p>AIと全力で向き合い、123のテキスト、38の画像、2つのグラフを生み出した5日間の記録。</p>
-      <a href="#summary-content" class="cta-button">スクロールして記録を見る</a>
-    </section>
-
-    <!-- セクション2：成果サマリー -->
-    <section class="summary" id="summary-content">
-      <h2>制作物の成果</h2>
-      <p>この5日間でAIを使って生み出したアウトプット</p>
-
-      <div class="summary-grid">
-        <div class="summary-card">
-          <div class="emoji">📝</div>
-          <div class="label">テキスト</div>
-          <div class="value">123件</div>
-        </div>
-        <div class="summary-card">
-          <div class="emoji">🖼️</div>
-          <div class="label">画像</div>
-          <div class="value">38件</div>
-        </div>
-        <div class="summary-card">
-          <div class="emoji">📊</div>
-          <div class="label">グラフ</div>
-          <div class="value">2件</div>
-        </div>
-        <div class="summary-card">
-          <div class="emoji">📦</div>
-          <div class="label">合計</div>
-          <div class="value">163件</div>
-        </div>
+    <div class="opening-overlay">
+      <div class="opening-title">
+        あんちぽAI塾生、<br>ひかぴの5日間。
       </div>
-    </section>
-
-    <!-- セクション3：アプローチの流れ -->
-    <section class="approach">
-      <h2>どんな戦略で動いたか？</h2>
-      <ul class="timeline">
-        <li>
-          <span class="day">Day 1</span>
-          <p>Xを開設。MBTIネタを3日で30本投稿 → 手ごたえなし。</p>
-        </li>
-        <li>
-          <span class="day">Day 2</span>
-          <p>Threads開設。Xの投稿をコピペ → 予想外の反響あり。</p>
-        </li>
-        <li>
-          <span class="day">Day 3</span>
-          <p>戦場をThreadsに移行し、AIと戦略を再構築。</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- セクション4：人気投稿と考察 -->
-    <section class="results">
-      <h2>どんな成果が出たか？</h2>
-      <p>フォロワー数：○○人（5/15時点）</p>
-      <div class="post-analysis">
-        <img src="popular-post.jpg" alt="人気投稿の画像" class="post-img">
-        <div class="post-text">
-          <h3>一番バズった投稿</h3>
-          <p>画像生成とMBTIネタを掛け合わせた「少女漫画ヒロイン図鑑」が大反響。<br>
-            ユーザーは「自分がどのタイプか気になる系」コンテンツに強く反応する傾向。</p>
-        </div>
+      <div class="opening-mission">
+        5日間で300フォロワーを獲得せよ
       </div>
-    </section>
+    </div>
 
-    <!-- セクション5：AIとの関係性 -->
-    <section class="ai-section">
-      <h2>AIとともに進めて気づいたこと</h2>
-      <div class="ai-cards">
-        <div class="ai-card">
-          <h4>感じたこと</h4>
-          <ul>
-            <li>AIに戦略を立ててもらっても、決定するのは自分。</li>
-            <li>ネタが大量に出てくるので、手が止まらなくなった。</li>
-            <li>CursorでHPを実装できたときの達成感。</li>
-          </ul>
+    <div class="main-content">
+      <!-- セクション1：ヒーロー -->
+      <section class="hero">
+        <div style="text-align: center; margin-bottom: 48px;">
+          <h1 style="font-size: 2.8em; font-weight: 900; background: linear-gradient(45deg, #1a1a1a, #4a4a4a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); margin-bottom: 24px; line-height: 1.4;">
+            あんちぽAI塾生、<br>ひかぴの5日間。
+          </h1>
+          <p class="subtitle-mission" style="font-size: 1.4em; color: #333; position: relative; display: inline-block; padding: 0 48px; margin: 0;">
+            <span style="position: absolute; content: ''; height: 2px; width: 32px; background: #333; top: 50%; left: 0;"></span>
+            5日間で300フォロワーを獲得せよ
+            <span style="position: absolute; content: ''; height: 2px; width: 32px; background: #333; top: 50%; right: 0;"></span>
+          </p>
         </div>
-        <div class="ai-card">
-          <h4>難しかったこと</h4>
-          <ul>
-            <li>AIの案を信じすぎて迷走した瞬間があった。</li>
-            <li>Cursorへの指示が難しく、Geminiに助けてもらった。</li>
-          </ul>
+
+        <div class="program-description-box">
+          <h2>あんちぽAI塾とは</h2>
+          <div class="program-overview">
+            概要：AIツールを活用した制作ディレクション能力を強化する研修プログラム。
+          </div>
+          <div class="program-tasks">
+            <h3>課題：</h3>
+            <ul class="tasks-list">
+              <li>SNSフォロワーを300人獲得せよ。</li>
+              <li>AIでの制作物を100個用意せよ。</li>
+              <li>自身でHPを立ち上げよ。</li>
+            </ul>
+          </div>
+          <div class="program-condition">
+            ただし、期間は5営業日。自分の手を使うことを禁ズ。
+          </div>
         </div>
-        <div class="ai-card">
-          <h4>考えたこと</h4>
-          <ul>
-            <li>戦略面でももっとAIを頼ってよかった。</li>
-            <li>AIを"答え"として使うのではなく、相棒にする感覚が大事。</li>
-          </ul>
+      </section>
+
+      <section class="summary-outline" style="display: flex; flex-direction: column; align-items: center; padding: 40px; max-width: 900px; margin: 0 auto; gap: 32px;">
+        <div style="display: flex; align-items: flex-start; gap: 48px; text-align: left;">
+          <img src="images/profile_green_new.png" alt="ひかぴのプロフィール画像" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <div style="flex: 1;">
+            <h2 class="outline-title" style="font-size: 1.8em; color: #222; font-weight: bold; margin-bottom: 24px;">ひかぴの取り組み概要</h2>
+            <ul class="outline-list" style="font-size: 1.1em;">
+          <li>ThreadsにてMBTIのコンテンツを扱う。</li>
+          <li>「MBTIオタクちゃん」として活動。</li>
+        </ul>
+          </div>
         </div>
-      </div>
-    </section>
+        <div class="sns-link-block" style="margin: 0;">
+          <a href="https://www.threads.com/@_otaku_mbti" class="sns-link-btn" target="_blank" rel="noopener noreferrer" style="padding: 14px 32px; font-size: 1.1em; display: inline-flex; align-items: center; background: #222; border-radius: 999px; text-decoration: none; color: white; transition: all 0.3s ease;">
+            <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads" class="sns-icon" style="width: 24px; height: 24px; margin-right: 12px;"> Threadsで活動中 @_otaku_mbti
+          </a>
+        </div>
+      </section>
 
-    <!-- セクション6：学び -->
-    <section class="learning">
-      <h2>この研修で得られた学び</h2>
-      <ul class="learning-points">
-        <li>最速で最高を目指すには、AIとともに"数"をこなすこと。</li>
-        <li>SNSでは他人の投稿から学ぶことが山ほどある。</li>
-        <li>目標への執着心が、結果を引き寄せる。</li>
-      </ul>
-    </section>
+      <!-- セクション2：成果サマリー -->
+      <section class="summary" id="summary-content" style="max-width: 1200px; margin: 0 auto; padding: 56px 40px;">
+        <h2>制作物の数</h2>
+        <p>この5日間でAIを使って生み出したアウトプット</p>
 
-    <!-- セクション7：まとめ -->
-    <section class="closing">
-      <h2>これから、どう活かしていくか？</h2>
-      <p>今回得た経験を活かして、Threadsを中心にMBTI系投稿を継続予定。<br>
-      また、AIを戦略面の"相談役"としてもっと深く使っていくつもりです。</p>
-    </section>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 32px; margin: 48px auto; max-width: 1000px; padding: 0 20px;">
+          <div class="summary-card" style="min-width: 140px;">
+            <div class="emoji">📝</div>
+            <div class="label">テキスト</div>
+            <div class="value">123件</div>
+          </div>
+          <div style="font-size: 2em; font-weight: bold; color: #222;">+</div>
+          <div class="summary-card" style="min-width: 140px;">
+            <div class="emoji">🖼️</div>
+            <div class="label">画像</div>
+            <div class="value">46件</div>
+          </div>
+          <div style="font-size: 2em; font-weight: bold; color: #222;">+</div>
+          <div class="summary-card" style="min-width: 140px;">
+            <div class="emoji">📊</div>
+            <div class="label">グラフ</div>
+            <div class="value">2件</div>
+          </div>
+          <div style="font-size: 2em; font-weight: bold; color: #222;">=</div>
+          <div class="summary-card" style="min-width: 200px; padding: 28px 20px; background: linear-gradient(135deg, #f5f5f5, #e0e0e0);">
+            <div class="emoji" style="font-size: 1.5em;">📦</div>
+            <div class="label" style="font-size: 1.2em; margin: 8px 0;">合計</div>
+            <div class="value" style="font-size: 1.5em;">171件</div>
+          </div>
+        </div>
+      </section>
 
+      <section class="ai-tools-block">
+        <h2 class="ai-tools-title">【使ったAIツール】</h2>
+        <ul class="ai-tools-list">
+          <li>ChatGPT</li>
+          <li>Gemini</li>
+          <li>Canva</li>
+          <li>Vercel</li>
+          <li>Cursor</li>
+          <li>Google AI Studio</li>
+          <li>Leonardo.Ai</li>
+        </ul>
+      </section>
+
+      <!-- セクション3：アプローチの流れ -->
+      <section class="approach">
+        <h2>この5日間の歩み</h2>
+        <div class="strategy-cards">
+          <div class="strategy-card">
+            <div class="strategy-date">
+              <div class="day">Day 1</div>
+              <div class="date">5/9</div>
+            </div>
+            <div class="strategy-main">
+              <div class="strategy-title">X開設・MBTIネタ発信</div>
+              <ul class="strategy-details">
+                <li>5/9：X（旧Twitter）を開設しMBTIネタを投稿開始</li>
+                <li>5/10-11：手ごたえなし。焦り始める。Xフォロワーは5人</li>
+              </ul>
+            </div>
+          </div>
+          <div class="strategy-card">
+            <div class="strategy-date">
+              <div class="day">Day 2</div>
+              <div class="date">5/12</div>
+            </div>
+            <div class="strategy-main">
+              <div class="strategy-title">Threads開設・初の2桁突破</div>
+              <ul class="strategy-details">
+                <li>Xの投稿をそのままコピペしてThreadsに投稿</li>
+                <li>手ごたえあり。知り合いにフォローを依頼し50名獲得！</li>
+                <li>戦場をThreadsに移す</li>
+              </ul>
+            </div>
+          </div>
+          <div class="strategy-card">
+            <div class="strategy-date">
+              <div class="day">Day 3</div>
+              <div class="date">5/13</div>
+            </div>
+            <div class="strategy-main">
+              <div class="strategy-title">Threadsフォロワー130人達成</div>
+              <ul class="strategy-details">
+                <li>テキストだけでなく生成AIネタも投稿し始める</li>
+              </ul>
+            </div>
+          </div>
+          <div class="strategy-card">
+            <div class="strategy-date">
+              <div class="day">Day 4</div>
+              <div class="date">5/14</div>
+            </div>
+            <div class="strategy-main">
+              <div class="strategy-title">コンセプト絞り・投稿祭り</div>
+              <ul class="strategy-details">
+                <li>コンテンツのコンセプトを絞る</li>
+                <li>フォロワーが増え始め220名達成</li>
+                <li>人気コンテンツが分かり始め、投稿祭り</li>
+              </ul>
+            </div>
+          </div>
+          <div class="strategy-card">
+            <div class="strategy-date">
+              <div class="day">Day 5</div>
+              <div class="date">5/15</div>
+            </div>
+            <div class="strategy-main">
+              <div class="strategy-title">持ちネタ総動員・250人突破</div>
+              <ul class="strategy-details">
+                <li>とにかく持ちネタを投稿しまくる</li>
+                <li>ユーザーからのコメントがつくようになる</li>
+                <li>朝起きたら250人フォロワー達成</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション4：人気投稿と考察 -->
+      <section class="results">
+        <h2>人気の投稿</h2>
+        <div class="top-views-block">
+          <h3 class="ranking-subtitle">閲覧数ランキング TOP3</h3>
+          <div class="top-views-cards">
+            <div class="top-view-card">
+              <div class="ranking-label">🥇 1位</div>
+              <img src="images/mbti2.png" alt="閲覧数1位投稿" class="top-view-img">
+              <div class="top-view-caption">逆に家のほうが元気なMBTIランキング</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJoJnTUKioc?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+            <div class="top-view-card">
+              <div class="ranking-label">🥈 2位</div>
+              <img src="images/mbti3.png" alt="閲覧数2位投稿" class="top-view-img">
+              <div class="top-view-caption">メンヘラを引き寄せがちなMBTIランキング</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJl4bW6Jd3X?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+            <div class="top-view-card">
+              <div class="ranking-label">🥉 3位</div>
+              <img src="images/mbti1.png" alt="閲覧数3位投稿" class="top-view-img">
+              <div class="top-view-caption">なんだかんだモテるMBTIランキング</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJlCHxfRHHd?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="top-likes-block">
+          <h3 class="ranking-subtitle">いいね数ランキング TOP3</h3>
+          <div class="top-views-cards">
+            <div class="top-view-card">
+              <div class="ranking-label">🥇 1位</div>
+              <img src="images/mbti2.png" alt="いいね数1位投稿" class="top-view-img">
+              <div class="top-view-caption">逆に家のほうが元気なMBTIランキング</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJoJnTUKioc?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+            <div class="top-view-card">
+              <div class="ranking-label">🥈 2位</div>
+              <img src="images/mbti4.png" alt="いいね数2位投稿" class="top-view-img">
+              <div class="top-view-caption">MBTI少女漫画ヒロイン図鑑</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJknnObT9WF?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+            <div class="top-view-card">
+              <div class="ranking-label">🥉 3位</div>
+              <img src="images/mbti1.png" alt="いいね数3位投稿" class="top-view-img">
+              <div class="top-view-caption">なんだかんだモテるMBTIランキング</div>
+              <a href="https://www.threads.com/@_otaku_mbti/post/DJlCHxfRHHd?xmt=AQF0wmHnPPUMkC3mXccQRgyXqR479pEaUGB8qRiQnSR2FA" class="threads-link-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://static.threads.net/images/favicon-32x32.png" alt="Threads"> 投稿を見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション：Threadsを使ってみて -->
+      <section class="threads-experience">
+        <h2>Threadsを使ってみて</h2>
+        <div class="threads-insights">
+          <div class="threads-box good">
+            <h3>良かったこと</h3>
+            <ul>
+              <li>始めたばかりの人でも他のユーザーの目につきやすい</li>
+              <li>むしろ始めたての方が目につく仕様かも</li>
+              <li>自分のフォローしているアカウントが他者にバレない</li>
+              <li>だからフォローしまくっていても不審に思われない</li>
+              <li>ユーザー同士が話しかけやすい雰囲気</li>
+            </ul>
+          </div>
+          <div class="threads-box bad">
+            <h3>不便だったこと</h3>
+            <ul>
+              <li>数が見つけにくい</li>
+              <li>検索タブにおいてXのように「人気順」で絞れないため、トレンドやニーズが絞りにくい</li>
+              <li>技術仕様が非公開なので、人気の投稿に関して傾向分析ができない</li>
+            </ul>
+          </div>
+          <div class="threads-box notice">
+            <h3>気づいたこと</h3>
+            <ul>
+              <li>テキストの見栄えが重要。行間・文字の量・絵文字に配慮する</li>
+              <li>コメントがつくと閲覧数が伸びやすい傾向</li>
+              <li>「誰にも見せない裏の顔」であったり「本音」であったり、人々のディープな部分に触れる話題は注目されやすい</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション5：AIとの関係性 -->
+      <section class="ai-section">
+        <h2>AIを使い続けて</h2>
+        <div class="ai-cards">
+          <div class="ai-card">
+            <h4>感じたこと</h4>
+            <div class="insight-buttons">
+              <div class="insight-button">
+                <span class="insight-category category-sns">SNS</span>
+                <div class="insight-text">すべてをAIに任せられないケースもある。戦略を立ててもらえるけど決定するのは自分。</div>
+              </div>
+              <div class="insight-button">
+                <span class="insight-category category-sns">SNS</span>
+                <div class="insight-text">自分では思いつかないネタを大量に生成してくれたので手が止まることなく作業できた。</div>
+              </div>
+              <div class="insight-button">
+                <span class="insight-category category-hp">HP</span>
+                <div class="insight-text">自分でサイトを実装できたことに感動。</div>
+              </div>
+              <div class="insight-button">
+                <span class="insight-category category-hp">HP</span>
+                <div class="insight-text">Cursorへ的確な指示の仕方が難しかった（ので、後半はGeminiに助けてもらった）</div>
+              </div>
+            </div>
+          </div>
+          <div class="right-column">
+            <div class="ai-card">
+              <h4>難しかったこと</h4>
+              <div class="thought-item">
+                AIの言うことを信じすぎて迷走してしまった。
+              </div>
+            </div>
+            <div class="ai-card">
+              <h4>考えたこと</h4>
+              <div class="thought-item">
+                AIを"答え"として使うのではなく、相棒にする感覚が大事。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- セクション6：学び -->
+      <section class="learning">
+        <h2>この研修で得られた学び</h2>
+        <ul class="learning-points">
+          <li>「最速で最高」を目指すにはAIを駆使して、バットを振る回数をとにかく増やすことが重要だと学んだ。</li>
+          <li>SNS運用においては他の投稿者から、学べることが大いにある。他の人の投稿を観察することで、どんな話題がいいかはもちろん、細かいテキストや絵文字の調整すらも分析することができる。</li>
+          <li>目標への執着は大事。どんなやり方でも達成してやるという心意気を持つ。</li>
+        </ul>
+      </section>
+    </div>
 </body>
 </html> 
