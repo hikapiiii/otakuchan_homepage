@@ -3,107 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全プラットフォームの目標</title>
+    <title>ひかぴの5日間 - 成果発表</title>
     <style>
-        body {
-            background: linear-gradient(135deg, #f0fff0 0%, #e6ffe6 100%);
-            color: #2c5530;
-            font-family: "メイリオ", Meiryo, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            color: #4a752c;
-            margin-top: 40px;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #6b8e23;
-            font-size: 2em;
-        }
-        h3 {
-            color: #5f7a3d;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            position: relative;
-            padding-left: 15px;
-        }
-        h3::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #6b8e23;
-        }
-        p {
-            line-height: 1.8;
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        ul {
-            margin-left: 20px;
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 20px;
-        }
-        li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #6b8e23;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 20px;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            h3 {
-                font-size: 1.3em;
-            }
-        }
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        color: #111;
+      }
+
+      section {
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      h1, h2 {
+        font-weight: bold;
+      }
+
+      .hero h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #000; /* Explicitly black for title, matches user's hero style */
+      }
+
+      .hero p {
+        font-size: 1.1em;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #000;
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 999px; /* pill shape */
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-weight: bold; /* Added for better visibility, matches user's hero style */
+      }
+
+      .cta-button:hover {
+        background-color: #333;
+      }
+      
+      /* Styles for Summary Section */
+      .summary h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .summary p {
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .summary-card {
+        background: #f9f9f9;
+        padding: 30px 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .summary-card .emoji {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .summary-card .label {
+        font-size: 1em;
+        color: #777;
+        margin-bottom: 5px;
+      }
+
+      .summary-card .value {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      /* Styles for Approach Section (Timeline) */
+      .approach h2 {
+        font-size: 2em;
+        margin-bottom: 40px; /* Added margin for title */
+      }
+      .approach ul.timeline {
+        list-style: none;
+        padding: 0;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .timeline li {
+        margin-bottom: 30px;
+        position: relative;
+        padding-left: 80px;
+      }
+      .timeline .day {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #eee;
+        color: #000;
+        font-weight: bold;
+        padding: 6px 12px;
+        border-radius: 8px;
+      }
+
+      /* Styles for Results Section */
+      .results h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+      .results p:first-of-type { /* For "フォロワー数" paragraph */
+        color: #666;
+        margin-bottom: 40px;
+      }
+      .results .post-analysis {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        max-width: 800px;
+        margin: 40px auto;
+        text-align: left;
+      }
+      .post-img {
+        width: 250px;
+        height: auto; /* Added for aspect ratio */
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      .post-text {
+        max-width: 400px;
+      }
+      .post-text h3 {
+          font-size: 1.3em; /* Added for consistency */
+          font-weight: bold;
+          margin-bottom: 10px;
+      }
+
+      /* Styles for AI Section */
+      .ai-section h2 {
+        font-size: 2em;
+        margin-bottom: 40px; /* Added margin for title */
+      }
+      .ai-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+      .ai-card {
+        flex: 1 1 250px;
+        background: #f4f4f4;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        text-align: left;
+      }
+      .ai-card h4 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .ai-card ul {
+        padding-left: 1.2em;
+        list-style: disc;
+      }
+      .ai-card li {
+          margin-bottom: 8px; /* Added for spacing between list items */
+      }
+
+      /* Styles for Learning Section */
+      .learning h2 {
+        font-size: 2em;
+        margin-bottom: 40px; /* Added margin for title */
+      }
+      .learning-points {
+        list-style: disc;
+        padding-left: 1.5em;
+        text-align: left;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .learning-points li {
+          margin-bottom: 10px; /* Added for spacing */
+          line-height: 1.6; /* Added for readability */
+      }
+
+      /* Styles for Closing Section */
+      .closing h2 {
+        font-size: 2em;
+        margin-bottom: 20px; /* Adjusted margin */
+      }
+      .closing p {
+        max-width: 600px;
+        margin: 20px auto;
+        font-size: 1.1em;
+        color: #444;
+        line-height: 1.8; /* Added for readability */
+      }
     </style>
 </head>
 <body>
-    <h2>全プラットフォームの目標</h2>
-    <h3>X の目標</h3>
-    <p>5/15までにフォロワー300人</p>
-    <h3>Threads の目標</h3>
-    <p>5/15までにフォロワー300人</p>
-    <h2>具体的な取り組み内容</h2>
-    <h3>X (旧Twitter) での取り組み</h3>
-    <p>ここにXで実施した具体的な取り組み内容を記述してください。</p>
-    <h3>Instagram での取り組み</h3>
-    <p>ここにInstagramで実施した具体的な取り組み内容を記述してください。</p>
-    <h2>成果</h2>
-    <h3>X (旧Twitter) の成果</h3>
-    <ul>
-        <li>フォロワー数: [具体的な数値]</li>
-        <li>エンゲージメント数: [具体的な数値]</li>
-    </ul>
-    <h3>ThreadsThreads の成果</h3>
-    <ul>
-        <li>フォロワー数: [具体的な数値]</li>
-        <li>エンゲージメント数: [具体的な数値]</li>
-    </ul>
-    <h2>成功要因と課題</h2>
-    <p>ここに各プラットフォームの成功要因と課題をまとめて記述してください。</p>
-    <h2>得られた学び</h2>
-    <p>この研修を通して得られた学びを記述してください。</p>
-    <h2>今後の展望</h2>
-    <p>今後のSNS運用に関する展望を記述してください。</p>
+
+    <!-- セクション1：ヒーロー -->
+    <section class="hero">
+      <h1>あんちぽAI塾生、ひかぴの5日間。</h1>
+      <p>AIと全力で向き合い、123のテキスト、38の画像、2つのグラフを生み出した5日間の記録。</p>
+      <a href="#summary-content" class="cta-button">スクロールして記録を見る</a>
+    </section>
+
+    <!-- セクション2：成果サマリー -->
+    <section class="summary" id="summary-content">
+      <h2>制作物の成果</h2>
+      <p>この5日間でAIを使って生み出したアウトプット</p>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="emoji">📝</div>
+          <div class="label">テキスト</div>
+          <div class="value">123件</div>
+        </div>
+        <div class="summary-card">
+          <div class="emoji">🖼️</div>
+          <div class="label">画像</div>
+          <div class="value">38件</div>
+        </div>
+        <div class="summary-card">
+          <div class="emoji">📊</div>
+          <div class="label">グラフ</div>
+          <div class="value">2件</div>
+        </div>
+        <div class="summary-card">
+          <div class="emoji">📦</div>
+          <div class="label">合計</div>
+          <div class="value">163件</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション3：アプローチの流れ -->
+    <section class="approach">
+      <h2>どんな戦略で動いたか？</h2>
+      <ul class="timeline">
+        <li>
+          <span class="day">Day 1</span>
+          <p>Xを開設。MBTIネタを3日で30本投稿 → 手ごたえなし。</p>
+        </li>
+        <li>
+          <span class="day">Day 2</span>
+          <p>Threads開設。Xの投稿をコピペ → 予想外の反響あり。</p>
+        </li>
+        <li>
+          <span class="day">Day 3</span>
+          <p>戦場をThreadsに移行し、AIと戦略を再構築。</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- セクション4：人気投稿と考察 -->
+    <section class="results">
+      <h2>どんな成果が出たか？</h2>
+      <p>フォロワー数：○○人（5/15時点）</p>
+      <div class="post-analysis">
+        <img src="popular-post.jpg" alt="人気投稿の画像" class="post-img">
+        <div class="post-text">
+          <h3>一番バズった投稿</h3>
+          <p>画像生成とMBTIネタを掛け合わせた「少女漫画ヒロイン図鑑」が大反響。<br>
+            ユーザーは「自分がどのタイプか気になる系」コンテンツに強く反応する傾向。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション5：AIとの関係性 -->
+    <section class="ai-section">
+      <h2>AIとともに進めて気づいたこと</h2>
+      <div class="ai-cards">
+        <div class="ai-card">
+          <h4>感じたこと</h4>
+          <ul>
+            <li>AIに戦略を立ててもらっても、決定するのは自分。</li>
+            <li>ネタが大量に出てくるので、手が止まらなくなった。</li>
+            <li>CursorでHPを実装できたときの達成感。</li>
+          </ul>
+        </div>
+        <div class="ai-card">
+          <h4>難しかったこと</h4>
+          <ul>
+            <li>AIの案を信じすぎて迷走した瞬間があった。</li>
+            <li>Cursorへの指示が難しく、Geminiに助けてもらった。</li>
+          </ul>
+        </div>
+        <div class="ai-card">
+          <h4>考えたこと</h4>
+          <ul>
+            <li>戦略面でももっとAIを頼ってよかった。</li>
+            <li>AIを"答え"として使うのではなく、相棒にする感覚が大事。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション6：学び -->
+    <section class="learning">
+      <h2>この研修で得られた学び</h2>
+      <ul class="learning-points">
+        <li>最速で最高を目指すには、AIとともに"数"をこなすこと。</li>
+        <li>SNSでは他人の投稿から学ぶことが山ほどある。</li>
+        <li>目標への執着心が、結果を引き寄せる。</li>
+      </ul>
+    </section>
+
+    <!-- セクション7：まとめ -->
+    <section class="closing">
+      <h2>これから、どう活かしていくか？</h2>
+      <p>今回得た経験を活かして、Threadsを中心にMBTI系投稿を継続予定。<br>
+      また、AIを戦略面の"相談役"としてもっと深く使っていくつもりです。</p>
+    </section>
+
 </body>
 </html> 

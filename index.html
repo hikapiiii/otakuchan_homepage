@@ -258,38 +258,48 @@
             bottom: 24px;
             right: 32px;
             background: #222;
-            color: #fff;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 28px;
-            font-size: 1em;
-            font-weight: bold;
+            border: 2px solid #222;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            min-height: 56px;
+            aspect-ratio: 1/1;
+            padding: 0;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            overflow: hidden;
         }
-
+        .content-btn::after {
+            content: '';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60%;
+            height: 60%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="15,10 30,20 15,30" fill="white"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
         .content-btn:hover {
             background: #444;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
         }
-
         @media (max-width: 700px) {
-            .content-card {
-                padding: 24px 12px 60px 12px;
-                min-height: 140px;
-            }
-            .content-card.with-image .content-title,
-            .content-card.with-image .content-desc {
-                padding: 0 12px;
-            }
-            .content-card.with-image .content-title {
-                margin-top: 16px;
-            }
             .content-btn {
                 right: 12px;
                 bottom: 16px;
-                padding: 8px 16px;
+                width: 44px;
+                height: 44px;
+                aspect-ratio: 1/1;
+                padding: 0;
             }
         }
         .main-lead-block {
@@ -698,6 +708,56 @@
                 right: 10px;
             }
         }
+
+        /* アニメーションの即時開始のための追加設定 */
+        .mbti-scroll-container:first-of-type .mbti-scroll {
+            animation: scroll 30s linear infinite;
+            animation-delay: 0s; /* 即時開始 */
+        }
+
+        /* スクロールの滑らかさを向上 */
+        .mbti-scroll-container {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            -moz-perspective: 1000;
+        }
+
+        /* アニメーションのパフォーマンス向上 */
+        .mbti-scroll, .mbti-box, .mbti-emoji {
+            will-change: transform;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .catalog-btn {
+            position: static;
+            width: auto;
+            min-width: 160px;
+            height: 48px;
+            min-height: 48px;
+            border-radius: 24px;
+            background: #222;
+            color: #fff;
+            border: none;
+            font-size: 1em;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 32px 0 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 24px;
+            white-space: nowrap;
+            line-height: 1;
+        }
+        .catalog-btn:hover {
+            background: #444;
+            transform: translateY(-2px) scale(1.05);
+        }
     </style>
     <script>
         // スクロールアニメーション
@@ -848,7 +908,7 @@
       <h1 class="main-lead-title">MBTIって、なんだかもうマンネリ？</h1>
 
       <p class="main-lead-text">
-        それなら、当サイトでMBTIの新しい扉を開けてみませんか？私たちは、MBTIを 딱딱とした『分析』ツールとして捉えるのはもう終わり。もっと自由な発想で、ワクワクしながら自分や周りの人を『観察』する、そんな新しい楽しみ方を提案します。『16タイプだからあなたは〇〇』なんて決めつけは一切なし！それぞれの個性は、違うからこそ面白い。そんな発見に満ちた体験をお届けします。
+        それなら、当サイトでMBTIの新しい扉を開けてみませんか？MBTIを 単なる『分析』ツールとして捉えるのはもう終わり！もっと自由な発想で、ワクワクしながら自分や周りの人を『観察』する、そんな新しい楽しみ方を提案します。『16タイプだからあなたは〇〇』なんて決めつけは一切なし！それぞれの個性は、違うからこそ面白い。そんな発見に満ちた体験をお届け！
       </p>
 
       <div class="mbti-scroll-container bottom">
@@ -986,7 +1046,7 @@
             <div class="content-wrapper">
               <div class="content-title">少女漫画ヒロイン図鑑</div>
               <div class="content-desc">人気少女漫画のヒロインをMBTIタイプで分析。</div>
-              <a href="syojomanga.html" class="content-btn">投稿をチェック</a>
+              <a href="syojomanga.html" class="content-btn catalog-btn">覗いてみる</a>
             </div>
           </div>
           <div class="content-card with-image">
@@ -1043,7 +1103,7 @@
             <div class="content-wrapper">
               <div class="content-title">異世界転生図鑑</div>
               <div class="content-desc">MBTIタイプ別の異世界での生き方を考察。</div>
-              <a href="isekai.html" class="content-btn">投稿をチェック</a>
+              <a href="isekai.html" class="content-btn catalog-btn">覗いてみる</a>
             </div>
           </div>
         </div>
@@ -1051,38 +1111,38 @@
         <div class="content-card">
             <div class="content-title">MBTIの擬人化・例え</div>
             <div class="content-desc">16タイプを擬人化して、より親しみやすく解説します。</div>
-            <a href="personification.html" class="content-btn">投稿をチェック</a>
+            <a href="personification.html" class="content-btn"></a>
         </div>
         <div class="content-card">
             <div class="content-title">MBTI別の好み・行動</div>
             <div class="content-desc">
                 タイプ別の特徴的な好みや行動パターンを紹介します。
             </div>
-            <a href="/preferences.html" class="content-btn">投稿をチェック</a>
+            <a href="/preferences.html" class="content-btn"></a>
         </div>
         <div class="content-card">
             <div class="content-title">「〇〇な時」シリーズ</div>
             <div class="content-desc">様々なシチュエーションでのMBTIタイプ別の反応を解説。</div>
-            <a href="/situations.html" class="content-btn">投稿をチェック</a>
+            <a href="/situations.html" class="content-btn"></a>
         </div>
         <div class="content-card">
             <a href="rankings.html" style="text-decoration: none; color: inherit;">
                 <div class="content-title">ランキング</div>
                 <div class="content-desc">MBTIタイプ別の様々なランキングを紹介します。</div>
             </a>
-            <button class="content-btn" onclick="window.location.href='rankings.html'">投稿をチェック</button>
+            <button class="content-btn" onclick="window.location.href='rankings.html'"></button>
         </div>
         <div class="content-card">
             <a href="monologue.html" style="text-decoration: none; color: inherit;">
                 <div class="content-title">主のひとりごと</div>
                 <div class="content-desc">MBTIオタクの日常的な気づきや考察を綴ります。</div>
             </a>
-            <button class="content-btn" onclick="window.location.href='monologue.html'">投稿をチェック</button>
+            <button class="content-btn" onclick="window.location.href='monologue.html'"></button>
         </div>
         <div class="content-card">
             <div class="content-title">💘 MBTI相性ペア集</div>
             <div class="content-desc">相性の良いペアから刺激的なペアまで、MBTIタイプ同士の相性を詳しく解説！</div>
-            <a href="pairs.html" class="content-btn">チェックする</a>
+            <a href="pairs.html" class="content-btn"></a>
         </div>
         </div>
     </div>
