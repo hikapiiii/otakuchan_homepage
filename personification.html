@@ -201,14 +201,138 @@
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
+                margin-top: 60px;
             }
 
             .hero-title {
-                font-size: 2em;
+                font-size: 1.6em;
+                padding: 0 15px;
+                margin-bottom: 15px;
+            }
+
+            .hero-description {
+                font-size: 0.9em;
+                padding: 0 20px;
+                line-height: 1.6;
+            }
+
+            .search-section {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+
+            .search-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .search-input {
+                width: 100%;
+                font-size: 0.9em;
+                padding: 10px;
+            }
+
+            .search-button {
+                width: 100%;
+                padding: 10px;
+                font-size: 0.9em;
             }
 
             .accordion-button {
-                padding: 16px;
+                padding: 12px 15px;
+                font-size: 0.95em;
+                height: auto;
+                min-height: 54px;
+            }
+
+            .card-content {
+                font-size: 0.85em;
+                line-height: 1.5;
+            }
+
+            .card-content-line {
+                padding: 8px 10px;
+                margin-bottom: 8px;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .mbti-type {
+                margin: 0;
+                font-size: 0.85em;
+                padding: 3px 6px;
+                min-width: 45px;
+                flex-shrink: 0;
+            }
+
+            .card-content-text {
+                padding: 0;
+                line-height: 1.4;
+            }
+
+            .accordion-content-inner {
+                padding: 10px;
+            }
+
+            .back-button {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+
+            .header {
+                padding: 8px;
+            }
+
+            .search-results .card-content-line {
+                flex-direction: row;
+            }
+        }
+
+        /* さらに小さい画面用の調整 */
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 50px;
+                padding: 8px;
+            }
+
+            .hero-title {
+                font-size: 1.4em;
+            }
+
+            .hero-description {
+                font-size: 0.85em;
+                padding: 0 15px;
+            }
+
+            .search-section {
+                margin: 15px 5px;
+                padding: 10px;
+            }
+
+            .accordion-button {
+                font-size: 0.9em;
+                min-height: 48px;
+                padding: 10px 12px;
+            }
+
+            .card-content {
+                font-size: 0.8em;
+            }
+
+            .card-content-line {
+                padding: 6px 8px;
+                margin-bottom: 6px;
+            }
+
+            .mbti-type {
+                font-size: 0.8em;
+                padding: 2px 5px;
+                min-width: 42px;
+            }
+
+            .accordion-content-inner {
+                padding: 8px;
             }
         }
 
@@ -282,117 +406,6 @@
             background-color: #fff3cd;
             padding: 2px 4px;
             border-radius: 4px;
-        }
-
-        /* レスポンシブデザイン */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-                margin-top: 60px;
-            }
-
-            .hero-title {
-                font-size: 1.8em;
-                padding: 0 15px;
-            }
-
-            .hero-description {
-                font-size: 1em;
-                padding: 0 20px;
-            }
-
-            .search-section {
-                margin: 20px 10px;
-                padding: 15px;
-            }
-
-            .search-container {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .search-input {
-                width: 100%;
-                font-size: 1em;
-                padding: 10px;
-            }
-
-            .search-button {
-                width: 100%;
-                padding: 10px;
-                font-size: 1em;
-            }
-
-            .accordion-button {
-                padding: 15px;
-                font-size: 1em;
-                height: auto;
-                min-height: 60px;
-            }
-
-            .card-content {
-                font-size: 0.95em;
-            }
-
-            .card-content-line {
-                flex-direction: column;
-                padding: 12px;
-                margin-bottom: 10px;
-            }
-
-            .mbti-type {
-                margin-bottom: 8px;
-                font-size: 0.9em;
-                padding: 4px 8px;
-                display: inline-block;
-            }
-
-            .card-content-text {
-                padding-top: 0;
-                line-height: 1.6;
-            }
-
-            .accordion-content-inner {
-                padding: 12px;
-            }
-
-            .back-button {
-                font-size: 0.9em;
-                padding: 6px 12px;
-            }
-
-            .header {
-                padding: 10px;
-            }
-        }
-
-        /* さらに小さい画面用の調整 */
-        @media (max-width: 480px) {
-            .container {
-                margin-top: 50px;
-            }
-
-            .hero-title {
-                font-size: 1.5em;
-            }
-
-            .hero-description {
-                font-size: 0.9em;
-            }
-
-            .search-section {
-                margin: 15px 5px;
-                padding: 12px;
-            }
-
-            .accordion-button {
-                font-size: 0.9em;
-                min-height: 50px;
-            }
-
-            .card-content {
-                font-size: 0.9em;
-            }
         }
     </style>
 </head>
