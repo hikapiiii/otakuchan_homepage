@@ -164,19 +164,38 @@
         }
 
         .card-content {
-            font-size: 1.0em;
+            font-size: 1.1em;
             color: #333;
             white-space: pre-line;
+            line-height: 2;
         }
 
         .mbti-type {
             font-weight: bold;
             color: var(--primary-color);
             background-color: #f0f0f0;
-            padding: 2px 5px;
-            border-radius: 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
             display: inline-block;
             vertical-align: baseline;
+            margin-right: 8px;
+            min-width: 55px;
+            text-align: center;
+        }
+
+        .card-content-line {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-content-text {
+            flex: 1;
+            padding-top: 2px;
         }
 
         @media (max-width: 768px) {
@@ -190,6 +209,189 @@
 
             .accordion-button {
                 padding: 16px;
+            }
+        }
+
+        /* 検索機能のスタイル */
+        .search-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #666;
+            box-shadow: 0 0 0 2px rgba(102,102,102,0.1);
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #444;
+            transform: translateY(-1px);
+        }
+
+        .search-results {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                margin-top: 60px;
+            }
+
+            .hero-title {
+                font-size: 1.8em;
+                padding: 0 15px;
+            }
+
+            .hero-description {
+                font-size: 1em;
+                padding: 0 20px;
+            }
+
+            .search-section {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+
+            .search-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .search-input {
+                width: 100%;
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .search-button {
+                width: 100%;
+                padding: 10px;
+                font-size: 1em;
+            }
+
+            .accordion-button {
+                padding: 15px;
+                font-size: 1em;
+                height: auto;
+                min-height: 60px;
+            }
+
+            .card-content {
+                font-size: 0.95em;
+            }
+
+            .card-content-line {
+                flex-direction: column;
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .mbti-type {
+                margin-bottom: 8px;
+                font-size: 0.9em;
+                padding: 4px 8px;
+                display: inline-block;
+            }
+
+            .card-content-text {
+                padding-top: 0;
+                line-height: 1.6;
+            }
+
+            .accordion-content-inner {
+                padding: 12px;
+            }
+
+            .back-button {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+
+            .header {
+                padding: 10px;
+            }
+        }
+
+        /* さらに小さい画面用の調整 */
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 50px;
+            }
+
+            .hero-title {
+                font-size: 1.5em;
+            }
+
+            .hero-description {
+                font-size: 0.9em;
+            }
+
+            .search-section {
+                margin: 15px 5px;
+                padding: 12px;
+            }
+
+            .accordion-button {
+                font-size: 0.9em;
+                min-height: 50px;
+            }
+
+            .card-content {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -208,6 +410,17 @@
                 MBTIの16タイプを、身近な例えや状況に置き換えて解説します。
                 カードのタイトルをクリックすると、詳しい説明が表示されます。
             </p>
+
+            <!-- 検索セクション -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="あなたのMBTIタイプを入力（例：INFP）" maxlength="4">
+                    <button class="search-button">検索</button>
+                </div>
+                <div class="search-results">
+                    <div class="results-content"></div>
+                </div>
+            </div>
         </section>
 
         <div class="content-section"> 
@@ -216,10 +429,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">INFP</span>：距離感が曖昧な優男。突然深い話してきて、こっちが揺さぶられる
-<span class="mbti-type">ENTP</span>：やりとり3ターンで"好きピ"って呼んでくる。マジで何？（でも楽しい）
-<span class="mbti-type">ISTJ</span>：夜21時までに返信ないと怒ってると思われがち。でもただ寝てる
-<span class="mbti-type">INFJ</span>：「大丈夫？」って聞いたら「あなたこそ」って返してくる。しんどい（好き）</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">距離感が曖昧な優男。突然深い話してきて、こっちが揺さぶられる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENTP</span>
+                                <span class="card-content-text">やりとり3ターンで"好きピ"って呼んでくる。マジで何？（でも楽しい）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTJ</span>
+                                <span class="card-content-text">夜21時までに返信ないと怒ってると思われがち。でもただ寝てる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFJ</span>
+                                <span class="card-content-text">「大丈夫？」って聞いたら「あなたこそ」って返してくる。しんどい（好き）</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,10 +455,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ESFP</span>：うさぎが大ジャンプして「ヤッターーー！！」ってやつ
-<span class="mbti-type">ISTP</span>：「OK（無表情）」みたいなやつ。しかも毎回それ
-<span class="mbti-type">ENFP</span>：たぶん既読つけずにスタンプだけ押してくる。なぜ？
-<span class="mbti-type">INTJ</span>：「返信はしてないけど、頭ではした」って気持ちが込められた無言スタンプ</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESFP</span>
+                                <span class="card-content-text">うさぎが大ジャンプして「ヤッターーー！！」ってやつ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTP</span>
+                                <span class="card-content-text">「OK（無表情）」みたいなやつ。しかも毎回それ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">たぶん既読つけずにスタンプだけ押してくる。なぜ？</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTJ</span>
+                                <span class="card-content-text">「返信はしてないけど、頭ではした」って気持ちが込められた無言スタンプ</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -242,10 +481,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ESTP</span>：ドローンに自分乗せて検証する系のやつ。命知らず
-<span class="mbti-type">INFJ</span>：音楽と日記で構成された誰も真似できないVlog
-<span class="mbti-type">INTP</span>：途中から量子力学の話になってチャンネルごと飛ぶ
-<span class="mbti-type">ESFJ</span>：毎週企画会議してる。ちゃんと台本ある。えらすぎる</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESTP</span>
+                                <span class="card-content-text">ドローンに自分乗せて検証する系のやつ。命知らず</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFJ</span>
+                                <span class="card-content-text">音楽と日記で構成された誰も真似できないVlog</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTP</span>
+                                <span class="card-content-text">途中から量子力学の話になってチャンネルごと飛ぶ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESFJ</span>
+                                <span class="card-content-text">毎週企画会議してる。ちゃんと台本ある。えらすぎる</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,10 +507,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ISTJ</span>：スープに20年、味変は不可
-<span class="mbti-type">ENFP</span>：トッピング自由すぎて何の店かわからん（でも人来る）
-<span class="mbti-type">INFP</span>：やってるけど看板出してない
-<span class="mbti-type">ENTP</span>：替え玉制度を週替わりでルール変えてくる（意味はない）</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTJ</span>
+                                <span class="card-content-text">スープに20年、味変は不可</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">トッピング自由すぎて何の店かわからん（でも人来る）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">やってるけど看板出してない</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENTP</span>
+                                <span class="card-content-text">替え玉制度を週替わりでルール変えてくる（意味はない）</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,10 +533,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ISFP</span>：色味ふんわり、でも落ちない。恋愛もそうであれ
-<span class="mbti-type">ENTJ</span>：マットで濃い。主役級。しかも長持ち（すごい）
-<span class="mbti-type">ENFP</span>：限定色だけど、なぜか2回くらい再販される。人気すぎ
-<span class="mbti-type">INTP</span>：成分見たら天才すぎて何者かわからなくなるタイプ。買う</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISFP</span>
+                                <span class="card-content-text">色味ふんわり、でも落ちない。恋愛もそうであれ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENTJ</span>
+                                <span class="card-content-text">マットで濃い。主役級。しかも長持ち（すごい）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">限定色だけど、なぜか2回くらい再販される。人気すぎ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTP</span>
+                                <span class="card-content-text">成分見たら天才すぎて何者かわからなくなるタイプ。買う</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -281,10 +559,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ISTP</span>：ミュートのまま入ってて、こっちが気づくまで無言
-<span class="mbti-type">ENFP</span>：通話ボタン押す前に「ねえねえ聞いて〜！」って叫んでる
-<span class="mbti-type">INTJ</span>：「はい」とだけ言って会話に合流してるけど、全部聞いてた
-<span class="mbti-type">INFP</span>：3回誘ってやっと来るけど、最初の10分は「大丈夫かな…」って言ってる</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTP</span>
+                                <span class="card-content-text">ミュートのまま入ってて、こっちが気づくまで無言</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">通話ボタン押す前に「ねえねえ聞いて〜！」って叫んでる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTJ</span>
+                                <span class="card-content-text">「はい」とだけ言って会話に合流してるけど、全部聞いてた</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">3回誘ってやっと来るけど、最初の10分は「大丈夫かな…」って言ってる</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,10 +585,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ENFJ</span>：仕切りながらみんなの情緒も背負って泣いてる
-<span class="mbti-type">ESTP</span>：売り子やるって言って出歩いてる
-<span class="mbti-type">INTP</span>：装飾係だけど「なんでこれ必要？」って言って途中で消える
-<span class="mbti-type">ISFJ</span>：朝からずっと裏で雑務やってるのに誰も気づいてない。泣く</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFJ</span>
+                                <span class="card-content-text">仕切りながらみんなの情緒も背負って泣いてる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESTP</span>
+                                <span class="card-content-text">売り子やるって言って出歩いてる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTP</span>
+                                <span class="card-content-text">装飾係だけど「なんでこれ必要？」って言って途中で消える</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISFJ</span>
+                                <span class="card-content-text">朝からずっと裏で雑務やってるのに誰も気づいてない。泣く</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -307,10 +611,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ESTJ</span>：たぶん全校朝礼で「声が小さい」って言ってくるやつ
-<span class="mbti-type">ISFJ</span>：決められたから断れなかった委員。でも結果一番ちゃんとしてる
-<span class="mbti-type">ENFP</span>：なぜかクラス全員に「いいじゃん！」って言われて立候補したタイプ
-<span class="mbti-type">INTP</span>：委員になったけど「そもそも制度の意義とは？」って話始めてる</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESTJ</span>
+                                <span class="card-content-text">たぶん全校朝礼で「声が小さい」って言ってくるやつ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISFJ</span>
+                                <span class="card-content-text">決められたから断れなかった委員。でも結果一番ちゃんとしてる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">なぜかクラス全員に「いいじゃん！」って言われて立候補したタイプ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTP</span>
+                                <span class="card-content-text">委員になったけど「そもそも制度の意義とは？」って話始めてる</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,10 +637,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ENFP</span> → お釣りがやたら多い（優しさが漏れてる）
-<span class="mbti-type">ENTP</span> → 選んでないのが出てくる（でもまあ当たり）
-<span class="mbti-type">ISTJ</span> → 完璧に動くが硬貨1円ズレると拒絶
-<span class="mbti-type">INFP</span> →動作音がすごいのに商品は出てこない</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">お釣りがやたら多い（優しさが漏れてる）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENTP</span>
+                                <span class="card-content-text">選んでないのが出てくる（でもまあ当たり）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTJ</span>
+                                <span class="card-content-text">完璧に動くが硬貨1円ズレると拒絶</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">動作音がすごいのに商品は出てこない</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -333,10 +663,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ENFJ</span> → まとめ役、でも気づくと病んでる
-<span class="mbti-type">INTP</span> → 通知は見てるけど読んでない（物理的に）
-<span class="mbti-type">ESFP</span> → スタンプ連打＆急に通話かけてくる
-<span class="mbti-type">INFJ</span> → 既読にならないけど空気は読んでる</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFJ</span>
+                                <span class="card-content-text">まとめ役、でも気づくと病んでる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTP</span>
+                                <span class="card-content-text">通知は見てるけど読んでない（物理的に）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESFP</span>
+                                <span class="card-content-text">スタンプ連打＆急に通話かけてくる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFJ</span>
+                                <span class="card-content-text">既読にならないけど空気は読んでる</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -346,10 +689,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ISFP</span> → ひっそり人の感情を拾う"そっと見守りぬ"
-<span class="mbti-type">ENTP</span> → 村を混乱させる"ひとこと多いま"
-<span class="mbti-type">INFJ</span> → 心を透かしてくる"読心地蔵"
-<span class="mbti-type">ESTP</span> → だいたい木の上から降ってくる"瞬発狸"</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISFP</span>
+                                <span class="card-content-text">ひっそり人の感情を拾う"そっと見守りぬ"</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENTP</span>
+                                <span class="card-content-text">村を混乱させる"ひとこと多いま"</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFJ</span>
+                                <span class="card-content-text">心を透かしてくる"読心地蔵"</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESTP</span>
+                                <span class="card-content-text">だいたい木の上から降ってくる"瞬発狸"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -359,10 +715,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">INTJ</span> → 全部切ってる（LINEも）
-<span class="mbti-type">ISFJ</span> → 音もバイブも出るけど1件ずつ返信してる
-<span class="mbti-type">ENFP</span> → めちゃくちゃ通知来てるのに全部無視
-<span class="mbti-type">INFP</span> → 音鳴らないけど通知ランプずっと光ってる（未対応）</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INTJ</span>
+                                <span class="card-content-text">全部切ってる（LINEも）</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISFJ</span>
+                                <span class="card-content-text">音もバイブも出るけど1件ずつ返信してる</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">めちゃくちゃ通知来てるのに全部無視</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">音鳴らないけど通知ランプずっと光ってる（未対応）</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -372,10 +741,23 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="card-content">
-<span class="mbti-type">ESTJ</span> → 「みんな〇〇でいいよね？」って決めるやつ
-<span class="mbti-type">ENFP</span> → 唐揚げとポテトと謎のデザート頼む
-<span class="mbti-type">INFP</span> →「…あ、じゃあ私あとでちょっと頼みます」って言って結局頼まない
-<span class="mbti-type">ISTP</span> → 勝手に一品頼んでて静かに食べてる</div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ESTJ</span>
+                                <span class="card-content-text">「みんな〇〇でいいよね？」って決めるやつ</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ENFP</span>
+                                <span class="card-content-text">唐揚げとポテトと謎のデザート頼む</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">INFP</span>
+                                <span class="card-content-text">「…あ、じゃあ私あとでちょっと頼みます」って言って結局頼まない</span>
+                            </div>
+                            <div class="card-content-line">
+                                <span class="mbti-type">ISTP</span>
+                                <span class="card-content-text">勝手に一品頼んでて静かに食べてる</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -411,6 +793,68 @@
                     }
                 }
             });
+        });
+
+        // MBTI検索機能
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-button');
+        const searchResults = document.querySelector('.search-results');
+        const resultsContent = document.querySelector('.results-content');
+
+        function searchMBTI() {
+            const searchTerm = searchInput.value.trim().toUpperCase();
+            if (searchTerm.length !== 4) {
+                alert('MBTIは4文字で入力してください（例：INFP）');
+                return;
+            }
+
+            const validTypes = ['E', 'I', 'N', 'S', 'T', 'F', 'J', 'P'];
+            for (let char of searchTerm) {
+                if (!validTypes.includes(char)) {
+                    alert('無効な文字が含まれています。E, I, N, S, T, F, J, P の組み合わせで入力してください。');
+                    return;
+                }
+            }
+
+            const allAccordionItems = document.querySelectorAll('.accordion-item');
+            let found = false;
+            let results = [];
+
+            allAccordionItems.forEach(item => {
+                const cardContent = item.querySelector('.card-content');
+                const title = item.querySelector('.accordion-button').textContent;
+                
+                if (cardContent && cardContent.innerHTML.includes(searchTerm)) {
+                    found = true;
+                    results.push(`
+                        <div class="search-result-item" style="margin-bottom: 20px; padding: 15px; background: #f8f8f8; border-radius: 8px;">
+                            <h3 style="margin: 0 0 10px 0; color: #333;">${title}</h3>
+                            <div style="padding: 10px; background: white; border-radius: 6px;">
+                                ${cardContent.innerHTML}
+                            </div>
+                        </div>
+                    `);
+                }
+            });
+
+            searchResults.classList.add('active');
+            if (found) {
+                resultsContent.innerHTML = `
+                    <div style="margin-bottom: 15px; padding: 10px; background: #fff3cd; border-radius: 6px; text-align: center;">
+                        「${searchTerm}」の検索結果：${results.length}件のお題が見つかりました
+                    </div>
+                    ${results.join('')}
+                `;
+            } else {
+                resultsContent.innerHTML = `<div class="no-results">「${searchTerm}」の結果は見つかりませんでした。</div>`;
+            }
+        }
+
+        searchButton.addEventListener('click', searchMBTI);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchMBTI();
+            }
         });
     </script>
 </body>
